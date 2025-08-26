@@ -1,18 +1,11 @@
-import {Component, inject} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {MatTableModule} from '@angular/material/table';
 import {Student} from './model/student';
 import {MatButton} from '@angular/material/button';
 import {MatDialog} from '@angular/material/dialog';
 import {CreateStudentDialog} from '../create-student-component/create-student-dialog';
+import {RestService} from '../service/rest-service';
 
-
-const ELEMENT_DATA: Student[] = [
-  {index: 1, name: 'Test', group: 2, average: 10, repo: 'Repo X', action: 'test'},
-  {index: 1, name: 'Test', group: 2, average: 10, repo: 'Repo X', action: 'test'},
-  {index: 1, name: 'Test', group: 2, average: 10, repo: 'Repo X', action: 'test'},
-  {index: 1, name: 'Test', group: 2, average: 10, repo: 'Repo X', action: 'test'},
-  {index: 1, name: 'Test', group: 2, average: 10, repo: 'Repo X', action: 'test'},
-]
 
 @Component({
   selector: 'app-student-component',
@@ -21,15 +14,22 @@ const ELEMENT_DATA: Student[] = [
   standalone: true,
   styleUrl: './student-component.css'
 })
-export class StudentComponent {
+export class StudentComponent implements OnInit {
 
-  displayedColumns: string[] = ['index', 'name', 'group', 'average'];
-  dataSource = ELEMENT_DATA;
+  displayedColumns: string[] = ['index', 'firstName', 'lastName', 'average'];
+  dataSource:Student[] = [];
   readonly dialog = inject(MatDialog);
 
-  constructor(
+  constructor(private restService: RestService,
   ) {
   }
+
+  ngOnInit(): void {
+    this.restService.getStudents().subscribe(students => {
+      this.dataSource = students;
+    })
+  }
+
 
   openAddStundentDialog() {
     const dialogRef = this.dialog.open(CreateStudentDialog);

@@ -25,7 +25,6 @@ import {MatButtonModule} from '@angular/material/button';
 })
 export class CreateStudentDialog {
 
-
   protected onSave() {
     console.log('Save button clicked');
   }

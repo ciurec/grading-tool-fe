@@ -1,7 +1,7 @@
 export interface Student {
   index: number;
-  name: string;
-  group: number;
+  firstName: string;
+  lastName: string;
   average: number;
   repo: string;
   action: string;
