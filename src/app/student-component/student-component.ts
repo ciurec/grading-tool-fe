@@ -1,6 +1,6 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {MatTableModule} from '@angular/material/table';
-import {Student} from './model/student';
+import {Student} from '../model/student';
 import {MatButton} from '@angular/material/button';
 import {MatDialog} from '@angular/material/dialog';
 import {CreateStudentDialog} from '../create-student-component/create-student-dialog';
