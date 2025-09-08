@@ -5,6 +5,7 @@ import {MatButton} from '@angular/material/button';
 import {MatDialog} from '@angular/material/dialog';
 import {CreateStudentDialog} from '../create-student-component/create-student-dialog';
 import {RestService} from '../service/rest-service';
+import {HttpClient} from '@angular/common/http';
 
 
 @Component({
@@ -16,12 +17,11 @@ import {RestService} from '../service/rest-service';
 })
 export class StudentComponent implements OnInit {
 
-  displayedColumns: string[] = ['index', 'firstName', 'lastName', 'average'];
+  displayedColumns: string[] = ['index', 'firstName', 'lastName', 'average','actions'];
   dataSource:Student[] = [];
   readonly dialog = inject(MatDialog);
 
-  constructor(private restService: RestService,
-  ) {
+  constructor(private restService: RestService) {
   }
 
   ngOnInit(): void {
@@ -39,4 +39,7 @@ export class StudentComponent implements OnInit {
     });
   }
 
+  viewStudentDetails(element:Student){
+
+  }
 }

@@ -1,0 +1,36 @@
+<p>assignment-component works!</p>
+<section>
+  <div class="example-button-row">
+    <button (click)="openAddStundentDialog()" matButton="outlined">Add assignment</button>
+  </div>
+</section>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+  <ng-container matColumnDef="index">
+    <th mat-header-cell *matHeaderCellDef> No.</th>
+    <td mat-cell *matCellDef="let element"> {{ element.index }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="firstName">
+    <th mat-header-cell *matHeaderCellDef> Name</th>
+    <td mat-cell *matCellDef="let element"> {{ element.firstName }}</td>
+  </ng-container>
+  <ng-container matColumnDef="lastName">
+    <th mat-header-cell *matHeaderCellDef> Name</th>
+    <td mat-cell *matCellDef="let element"> {{ element.lastName }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="group">
+    <th mat-header-cell *matHeaderCellDef> Group</th>
+    <td mat-cell *matCellDef="let element"> {{ element.group }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="average">
+    <th mat-header-cell *matHeaderCellDef> Average</th>
+    <td mat-cell *matCellDef="let element"> {{ element.average }}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
