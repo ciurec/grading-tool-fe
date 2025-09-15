@@ -10,6 +10,7 @@ section {
 }
 
 .example-button-row {
+  color: var(--color-primary);
   max-width: 600px;
 }
 

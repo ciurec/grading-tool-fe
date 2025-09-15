@@ -1,18 +1,36 @@
-<mat-dialog-content>
-  <mat-form-field appearance="fill">
-    <mat-label>Fill form field</mat-label>
-    <input matInput placeholder="Placeholder">
-    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-    <mat-hint>Hint</mat-hint>
-  </mat-form-field>
-  <mat-form-field appearance="outline">
-    <mat-label>Outline form field</mat-label>
-    <input matInput placeholder="Placeholder">
-    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-    <mat-hint>Hint</mat-hint>
-  </mat-form-field>
+
+<mat-dialog-content class="dialog-content">
+  <h2 class="color-text">Add New Student</h2>
+
+  <form class="student-form">
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>First Name</mat-label>
+      <input matInput placeholder="Enter first name"  name="firstName">
+      <mat-icon matSuffix>person</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Last Name</mat-label>
+      <input matInput placeholder="Enter last name" name="lastName">
+      <mat-icon matSuffix>person</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Email</mat-label>
+      <input matInput type="email" placeholder="Enter email" name="email">
+      <mat-icon matSuffix>email</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Phone</mat-label>
+      <input matInput type="tel" placeholder="Enter phone number"  name="phone">
+      <mat-icon matSuffix>phone</mat-icon>
+    </mat-form-field>
+  </form>
 </mat-dialog-content>
-<mat-dialog-actions>
-  <button mat-button (click)="onSave()">Save</button>
-  <button mat-button (click)="onClose()">Cloe</button>
+
+<mat-dialog-actions align="end">
+  <button mat-stroked-button class="custom-primary"  (click)="onClose()">Cancel</button>
+  <button mat-flat-button class="custom-primary"  (click)="onSave()">Save</button>
 </mat-dialog-actions>

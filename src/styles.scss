@@ -10,3 +10,101 @@ $my-theme: mat.define-theme((
   )));
 
 @include mat.all-component-themes($my-theme);
+:root {
+  /* Culori principale */
+  --color-primary: #007bff;
+  /* Culori secundare */
+  --color-secondary: #6c757d;
+  /* Culori pentru fundal */
+  --color-background: #f8f9fa;
+  --color-surface: #ffffff;
+  /* Culori pentru text */
+  --color-text: #212529;
+
+
+  /* Accent / warnings / success */
+  --color-success: #28a745;
+  --color-danger: #dc3545;
+  --color-warning: #ffc107;
+}
+
+/* Raised button (plin) */
+.mat-mdc-raised-button.custom-primary {
+  background-color: var(--color-primary) !important;
+  color: var(--color-text-light) !important;
+}
+
+.mat-mdc-raised-button.custom-primary:hover {
+  background-color: var(--color-primary-dark) !important;
+}
+
+/* Outlined button */
+.mat-mdc-outlined-button.custom-primary {
+  border-color: var(--color-primary) !important;
+  color: var(--color-primary) !important;
+}
+
+.mat-mdc-outlined-button.custom-primary:hover {
+  background-color: var(--color-primary-light) !important;
+  color: var(--color-text-light) !important;
+}
+
+.custom-table {
+  width: 100% !important;
+  border-radius: 8px !important;
+  overflow: hidden !important;
+  background-color: var(--color-background) !important; /* background general tabel */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1) !important;
+}
+
+.custom-table th.mat-header-cell {
+  background-color: var(--color-primary) !important;
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+/* Celulele */
+.custom-table td.mat-cell {
+  background-color: var(--color-background); /* fundal celule */
+  color: var(--color-text);
+}
+
+/* Rând hover */
+.custom-table tr.mat-row:hover td.mat-cell {
+  background-color: var(--color-primary); /* highlight la hover */
+  color: var(--color-text);
+}
+
+.my-custom-dialog {
+  background-color: var(--color-background);
+  padding: 24px !important;
+  border-radius: 12px !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Butoane în dialog */
+.my-custom-dialog button.mat-flat-button {
+  background-color: #4caf50 !important; /* verde Save */
+  color: white !important;
+}
+
+.my-custom-dialog button.mat-stroked-button {
+  border-color: #f44336 !important; /* roșu Cancel */
+  color: #f44336 !important;
+}
+
+.my-custom-dialog .my-dialog-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background-color: red !important;
+  padding: 0;
+}
+
+.color-primary {
+  color: var(--color-primary);
+}
+
+.color-text {
+  color: var(--color-text);
+}

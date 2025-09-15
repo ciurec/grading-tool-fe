@@ -1,11 +1,11 @@
 <p>assignment-component works!</p>
 <section>
   <div class="example-button-row">
-    <button (click)="openAddStundentDialog()" matButton="outlined">Add assignment</button>
+    <button class="custom-primary" (click)="openAddStundentDialog()" mat-flat-button>Add assignment</button>
   </div>
 </section>
 
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+<table mat-table [dataSource]="dataSource" class=" custom-table mat-elevation-z8">
 
   <ng-container matColumnDef="index">
     <th mat-header-cell *matHeaderCellDef> No.</th>
