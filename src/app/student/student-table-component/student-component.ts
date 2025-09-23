@@ -1,10 +1,10 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {MatTableModule} from '@angular/material/table';
-import {Student} from '../model/student';
+import {Student} from '../../model/student';
 import {MatButton} from '@angular/material/button';
 import {MatDialog} from '@angular/material/dialog';
 import {CreateStudentDialog} from '../create-student-component/create-student-dialog';
-import {RestService} from '../service/rest-service';
+import {RestService} from '../../service/rest-service';
 import {HttpClient} from '@angular/common/http';
 
 
@@ -17,19 +17,23 @@ import {HttpClient} from '@angular/common/http';
 })
 export class StudentComponent implements OnInit {
 
-  displayedColumns: string[] = ['index', 'firstName', 'lastName', 'average','actions'];
-  dataSource:Student[] = [];
+  displayedColumns: string[] = ['index', 'firstName', 'lastName', 'average', 'actions'];
+  dataSource: Student[] = [];
   readonly dialog = inject(MatDialog);
 
   constructor(private restService: RestService) {
   }
 
   ngOnInit(): void {
+    this.loadStudents();
+  }
+
+
+  private loadStudents() {
     this.restService.getStudents().subscribe(students => {
       this.dataSource = students;
     })
   }
-
 
   openAddStundentDialog() {
     const dialogRef = this.dialog.open(CreateStudentDialog, {
@@ -37,14 +41,12 @@ export class StudentComponent implements OnInit {
       panelClass: 'my-custom-dialog' // <- aici aplici clasa
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        console.log('New student:', result);
-      }
+    dialogRef.afterClosed().subscribe(() => {
+      this.loadStudents();
     });
   }
 
-  viewStudentDetails(element:Student){
+  viewStudentDetails(element: Student) {
 
   }
 }

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {MatCard, MatCardActions, MatCardContent, MatCardTitle} from '@angular/material/card';
 import {NgForOf} from '@angular/common';
-import {Student} from '../model/student';
+import {Student} from '../../model/student';
 import {of} from 'rxjs';
 import {MatButton} from '@angular/material/button';
 

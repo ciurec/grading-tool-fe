@@ -1,36 +1,36 @@
-
 <mat-dialog-content class="dialog-content">
+
   <h2 class="color-text">Add New Student</h2>
 
-  <form class="student-form">
+  <form [formGroup]="form" class="student-form">
 
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>First Name</mat-label>
-      <input matInput placeholder="Enter first name"  name="firstName">
+      <input matInput formControlName="firstName" placeholder="Enter first name" name="firstName">
       <mat-icon matSuffix>person</mat-icon>
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Last Name</mat-label>
-      <input matInput placeholder="Enter last name" name="lastName">
+      <input matInput formControlName="lastName" placeholder="Enter last name" name="lastName">
       <mat-icon matSuffix>person</mat-icon>
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Email</mat-label>
-      <input matInput type="email" placeholder="Enter email" name="email">
+      <input matInput formControlName="email" type="email" placeholder="Enter email" name="email">
       <mat-icon matSuffix>email</mat-icon>
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Phone</mat-label>
-      <input matInput type="tel" placeholder="Enter phone number"  name="phone">
+      <input matInput formControlName="phone" type="tel" placeholder="Enter phone number" name="phone">
       <mat-icon matSuffix>phone</mat-icon>
     </mat-form-field>
   </form>
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">
-  <button mat-stroked-button class="custom-primary"  (click)="onClose()">Cancel</button>
-  <button mat-flat-button class="custom-primary"  (click)="onSave()">Save</button>
+  <button mat-stroked-button class="custom-primary" (click)="onClose()">Cancel</button>
+  <button mat-flat-button class="custom-primary" (click)="onSave()">Save</button>
 </mat-dialog-actions>

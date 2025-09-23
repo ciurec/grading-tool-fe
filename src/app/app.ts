@@ -1,8 +1,8 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import {MatTable} from '@angular/material/table';
-import {StudentComponent} from './student-table-component/student-component';
-import {StudentDetailsComponent} from './student-details-component/student-details-component';
+import {StudentComponent} from './student/student-table-component/student-component';
+import {StudentDetailsComponent} from './student/student-details-component/student-details-component';
 
 @Component({
   selector: 'app-root',

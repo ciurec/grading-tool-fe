@@ -9,10 +9,10 @@ import {
     MatHeaderRowDef,
     MatRow, MatRowDef, MatTable
 } from "@angular/material/table";
-import {Student} from '../model/student';
+import {Student} from '../../model/student';
 import {MatDialog} from '@angular/material/dialog';
-import {RestService} from '../service/rest-service';
-import {CreateStudentDialog} from '../create-student-component/create-student-dialog';
+import {RestService} from '../../service/rest-service';
+import {CreateStudentDialog} from '../../student/create-student-component/create-student-dialog';
 
 @Component({
   selector: 'app-assignment-component',
