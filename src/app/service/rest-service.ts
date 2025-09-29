@@ -25,6 +25,10 @@ export class RestService {
     return this.http.post<Student>(this.baseUrl + this.studentsEndpoint, student);
   }
 
+  createAssignement(student: Student): Observable<Student> {
+    return this.http.post<Student>(this.baseUrl + this.studentsEndpoint, student);
+  }
+
   updateStudent(id: number, student: Student): Observable<Student> {
     return this.http.put<Student>(`${this.baseUrl + this.studentsEndpoint}/${id}`, student);
   }

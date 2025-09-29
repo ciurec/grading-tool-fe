@@ -48,7 +48,6 @@ export class CreateStudentDialog implements OnInit {
   onSave() {
     const student: Student = this.form.value as Student;
 
-    console.log(student)
     this.restService.createStudent(student).subscribe({
       next: (savedStudent) => {
         this.dialogRef.close(savedStudent);

@@ -38,7 +38,7 @@ export class StudentComponent implements OnInit {
   openAddStundentDialog() {
     const dialogRef = this.dialog.open(CreateStudentDialog, {
       width: '400px',
-      panelClass: 'my-custom-dialog' // <- aici aplici clasa
+      panelClass: 'my-custom-dialog'
     });
 
     dialogRef.afterClosed().subscribe(() => {
