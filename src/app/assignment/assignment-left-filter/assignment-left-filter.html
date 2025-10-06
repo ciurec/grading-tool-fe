@@ -1,0 +1,17 @@
+<mat-card class="filter-card">
+  <h3>Filter by Group</h3>
+
+  <div class="checkbox-list">
+    <mat-checkbox
+      *ngFor="let group of groups"
+      [(ngModel)]="group.selected"
+      (change)="onSelectionChange()"
+    >
+      {{ group.name }}
+    </mat-checkbox>
+  </div>
+
+  <div class="actions">
+    <button mat-stroked-button color="warn" (click)="reset()">Reset</button>
+  </div>
+</mat-card>

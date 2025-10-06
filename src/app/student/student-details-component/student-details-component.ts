@@ -28,9 +28,9 @@ export class StudentDetailsComponent {
       group: '30231',
       email: 'ion.popescu@email.com',
       assignments: [
-        { title: 'Tema 1', status: 'Predat', grade: 9, copied: false },
-        { title: 'Tema 2', status: 'Predat', grade: 7, copied: true },
-        { title: 'Tema 3', status: 'Nepredat' },
+        { title: 'Tema 1', status: 'Predat', grade: 9, copied: false ,deadline:'test'},
+        { title: 'Tema 2', status: 'Predat', grade: 7, copied: true,deadline:'test' },
+        { title: 'Tema 3', status: 'Nepredat',deadline:'test' },
       ]
     }
   ;

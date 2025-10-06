@@ -23,3 +23,17 @@ section {
   justify-content: space-between;
   flex-wrap: wrap;
 }
+
+.page-layout {
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+}
+
+app-left-filter {
+  flex: 0 0 220px;
+}
+
+.main-content {
+  flex: 1;
+}

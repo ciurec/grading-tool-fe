@@ -21,6 +21,7 @@ import {MatIcon} from '@angular/material/icon';
     MatFormField,
   ],
   templateUrl: './create-assignment-component.html',
+  standalone: true,
   styleUrl: './create-assignment-component.css'
 })
 export class CreateAssignmentComponent implements OnInit {
@@ -34,10 +35,8 @@ export class CreateAssignmentComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.fb.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      phone: ['']
+      name: ['', Validators.required],
+      deadline: ['', Validators.required],
     });
   }
 

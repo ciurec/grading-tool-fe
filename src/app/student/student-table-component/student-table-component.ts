@@ -6,16 +6,17 @@ import {MatDialog} from '@angular/material/dialog';
 import {CreateStudentDialog} from '../create-student-component/create-student-dialog';
 import {RestService} from '../../service/rest-service';
 import {HttpClient} from '@angular/common/http';
+import {StudentLeftFilter} from '../student-left-filter/student-left-filter';
 
 
 @Component({
   selector: 'app-student-component',
-  imports: [MatTableModule, MatButton],
-  templateUrl: './student-component.html',
+  imports: [MatTableModule, MatButton, StudentLeftFilter],
+  templateUrl: './student-table-component.html',
   standalone: true,
-  styleUrl: './student-component.css'
+  styleUrl: './student-table-component.css'
 })
-export class StudentComponent implements OnInit {
+export class StudentTableComponent implements OnInit {
 
   displayedColumns: string[] = ['index', 'firstName', 'lastName', 'average', 'actions'];
   dataSource: Student[] = [];
@@ -47,6 +48,9 @@ export class StudentComponent implements OnInit {
   }
 
   viewStudentDetails(element: Student) {
+
+  }
+  onGroupsChanged(selectedGroups: string[]) {
 
   }
 }

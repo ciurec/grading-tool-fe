@@ -2,6 +2,7 @@ import {Injectable} from "@angular/core";
 import {HttpClient} from '@angular/common/http';
 import {Observable} from "rxjs";
 import {Student} from '../model/student';
+import {Assignment} from '../model/assignment';
 
 @Injectable({
   providedIn: 'root',
@@ -9,12 +10,17 @@ import {Student} from '../model/student';
 export class RestService {
   private readonly baseUrl = 'http://localhost:8081/';
   private studentsEndpoint = 'students';
+  private assignementsEndpoint = 'assignments';
 
   constructor(private http: HttpClient) {
   }
 
   getStudents(): Observable<Student[]> {
     return this.http.get<Student[]>(this.baseUrl + this.studentsEndpoint);
+  }
+
+  getAssignments(): Observable<Assignment[]> {
+    return this.http.get<Assignment[]>(this.baseUrl + this.assignementsEndpoint);
   }
 
   getStudentById(id: number): Observable<Student> {

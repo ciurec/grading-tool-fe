@@ -3,6 +3,8 @@
     <button class="custom-primary" (click)="openAddStundentDialog()" mat-flat-button >Add student</button>
   </div>
 </section>
+<div class="page-layout">
+  <app-student-left-filter (groupsChanged)="onGroupsChanged($event)"></app-student-left-filter>
 
 <table mat-table [dataSource]="dataSource" class=" custom-table mat-elevation-z8">
 

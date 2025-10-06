@@ -14,6 +14,9 @@ import {MatDialog} from '@angular/material/dialog';
 import {RestService} from '../../service/rest-service';
 import {CreateStudentDialog} from '../../student/create-student-component/create-student-dialog';
 import {CreateAssignmentComponent} from '../create-assignment-component/create-assignment-component';
+import {Assignment} from '../../model/assignment';
+import {StudentLeftFilter} from '../../student/student-left-filter/student-left-filter';
+import {AssignmentLeftFilter} from '../assignment-left-filter/assignment-left-filter';
 
 @Component({
   selector: 'app-assignment-component',
@@ -28,26 +31,28 @@ import {CreateAssignmentComponent} from '../create-assignment-component/create-a
     MatRow,
     MatRowDef,
     MatTable,
-    MatHeaderCellDef
+    MatHeaderCellDef,
+    StudentLeftFilter,
+    AssignmentLeftFilter
   ],
-  templateUrl: './assignment-component.html',
-  styleUrl: './assignment-component.css'
+  templateUrl: './assignment-table-component.html',
+  standalone: true,
+  styleUrl: './assignment-table-component.css'
 })
-export class AssignmentComponent implements OnInit{
+export class AssignmentTableComponent implements OnInit {
 
-  displayedColumns: string[] = ['index', 'assignmentName', 'deadline'];
-  dataSource:Student[] = [];
+  displayedColumns: string[] = ['index', 'title', 'deadline', 'actions'];
+  dataSource: Assignment[] = [];
   readonly dialog = inject(MatDialog);
 
   constructor(private restService: RestService) {
   }
 
   ngOnInit(): void {
-    this.restService.getStudents().subscribe(students => {
-      this.dataSource = students;
+    this.restService.getAssignments().subscribe(assignments => {
+      this.dataSource = assignments;
     })
   }
-
 
   openAddAssignmentDialog() {
     const dialogRef = this.dialog.open(CreateAssignmentComponent);
@@ -57,4 +62,11 @@ export class AssignmentComponent implements OnInit{
     });
   }
 
+  viewAssignemntDetails(element: Assignment) {
+
+  }
+
+  onGroupsChanged(selectedGroups: string[]) {
+
+  }
 }

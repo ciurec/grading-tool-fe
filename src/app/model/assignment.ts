@@ -3,4 +3,5 @@ export interface Assignment {
   status: 'Predat' | 'Nepredat';
   grade?: number;
   copied?: boolean;
+  deadline: string;
 }
