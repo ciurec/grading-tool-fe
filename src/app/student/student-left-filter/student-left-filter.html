@@ -4,7 +4,6 @@
   <div class="checkbox-list">
     <mat-checkbox
       *ngFor="let group of groups"
-      [(ngModel)]="group.selected"
       (change)="onSelectionChange()"
     >
       {{ group.name }}

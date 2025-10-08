@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from "rxjs";
 import {Student} from '../model/student';
 import {Assignment} from '../model/assignment';
+import {GroupModel} from '../model/group.model';
 
 @Injectable({
   providedIn: 'root',
@@ -11,6 +12,7 @@ export class RestService {
   private readonly baseUrl = 'http://localhost:8081/';
   private studentsEndpoint = 'students';
   private assignementsEndpoint = 'assignments';
+  private groupsEndpoint = 'baseData/groups';
 
   constructor(private http: HttpClient) {
   }
@@ -41,5 +43,10 @@ export class RestService {
 
   deleteStudent(id: number): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl + this.studentsEndpoint}/${id}`);
+  }
+
+  getAllGroups(): Observable<GroupModel[]> {
+
+    return this.http.get<GroupModel[]>(this.baseUrl + this.groupsEndpoint);
   }
 }
