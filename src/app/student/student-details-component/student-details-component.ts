@@ -25,7 +25,10 @@ export class StudentDetailsComponent {
       index: 1,
       firstName: 'Popescu Ion',
       lastName: 'Popescu Ion',
-      group: '30231',
+      studyGroup: {
+        id: 1,
+        name: 'Grupa 1',
+      },
       email: 'ion.popescu@email.com',
       assignments: [
         { title: 'Tema 1', status: 'Predat', grade: 9, copied: false ,deadline:'test'},

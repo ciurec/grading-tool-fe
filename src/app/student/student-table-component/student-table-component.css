@@ -18,22 +18,27 @@ section {
   margin: 8px 8px 8px 0;
 }
 
-.example-flex-container {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
-
 .page-layout {
   display: flex;
   align-items: flex-start;
-  gap: 2rem;
+  gap: 5px;
 }
 
-app-left-filter {
-  flex: 0 0 220px;
+.left-panel {
+  flex: 0 0 15%;
+  max-width: 15%;
 }
 
-.main-content {
-  flex: 1;
+.right-panel {
+  flex: 0 0 85%;
+  max-width: 85%;
+}
+.repo-link {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.repo-link:hover {
+  text-decoration: underline;
 }

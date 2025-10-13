@@ -53,7 +53,7 @@ $my-theme: mat.define-theme((
   width: 100% !important;
   border-radius: 8px !important;
   overflow: hidden !important;
-  background-color: var(--color-background) !important; /* background general tabel */
+  background-color: var(--color-surface) !important; /* background general tabel */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1) !important;
 }
 

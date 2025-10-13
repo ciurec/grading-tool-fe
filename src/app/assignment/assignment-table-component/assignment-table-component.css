@@ -27,7 +27,7 @@ section {
 .page-layout {
   display: flex;
   align-items: flex-start;
-  gap: 2rem;
+  gap: 5px;
 }
 
 app-left-filter {
@@ -36,4 +36,18 @@ app-left-filter {
 
 .main-content {
   flex: 1;
+}
+.left-panel {
+  flex: 0 0 15%;
+  max-width: 15%;
+}
+
+.right-panel {
+  flex: 0 0 85%;
+  max-width: 85%;
+}
+.repo-link {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 500;
 }
