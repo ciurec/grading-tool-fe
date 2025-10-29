@@ -1,13 +1,14 @@
-# Build stage
-FROM node:20 AS build
+# === BUILD STAGE ===
+FROM node:20-bullseye AS build
 WORKDIR /app
 COPY package*.json ./
-RUN npm install
+RUN npm ci
 COPY . .
-RUN npx ng build disertatie-fe-v2 --configuration production
+RUN npx ng build disertatie-fe-v2 --configuration production --base-href /
 
-# Serve dist
+# === NGINX STAGE ===
 FROM nginx:alpine
-COPY --from=build /app/dist/disertatie-fe-v2 /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=build /app/dist/disertatie-fe-v2/browser /usr/share/nginx/html
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]

@@ -4,12 +4,13 @@ import {Observable} from "rxjs";
 import {Student} from '../model/student';
 import {Assignment} from '../model/assignment';
 import {GroupModel} from '../model/group.model';
+import {environment} from '../../environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RestService {
-  private readonly baseUrl = 'http://localhost:8081/';
+  private readonly baseUrl = environment.apiUrl + '/';
   private studentsEndpoint = 'students';
   private assignementsEndpoint = 'assignments';
   private groupsEndpoint = 'baseData/groups';
