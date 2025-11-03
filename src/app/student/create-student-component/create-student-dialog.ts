@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {MatFormField, MatHint, MatInput, MatLabel} from '@angular/material/input';
+import {MatFormField, MatInput, MatInputModule, MatLabel} from '@angular/material/input';
 import {MatIcon} from '@angular/material/icon';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
@@ -7,6 +7,8 @@ import {MatDialogRef} from '@angular/material/dialog';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {RestService} from '../../service/rest-service';
 import {Student} from '../../model/student';
+import {MatOption, MatSelect, MatSelectModule} from '@angular/material/select';
+import {GroupModel} from '../../model/group.model';
 
 @Component({
   selector: 'app-create-student-component',
@@ -14,14 +16,16 @@ import {Student} from '../../model/student';
     MatFormField,
     MatLabel,
     MatIcon,
-    MatHint,
     MatLabel,
     MatIcon,
-    MatHint,
     MatInput,
     MatDialogModule,
     MatButtonModule,
     ReactiveFormsModule,
+    MatSelect,
+    MatOption,
+    MatInputModule,
+    MatSelectModule,
   ],
   templateUrl: './create-student-dialog.html',
   standalone: true,
@@ -30,6 +34,7 @@ import {Student} from '../../model/student';
 export class CreateStudentDialog implements OnInit {
 
   form!: FormGroup;
+  studyGroups: GroupModel [] = [];
 
   constructor(private fb: FormBuilder,
               private dialogRef: MatDialogRef<CreateStudentDialog>, private restService: RestService) {
@@ -41,8 +46,18 @@ export class CreateStudentDialog implements OnInit {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
+      studyGroup: [null, Validators.required],
       phone: ['']
     });
+    this.loadStudyGroups();
+  }
+
+  private loadStudyGroups() {
+    this.restService.getAllGroups().subscribe({
+      next: (groups) => (this.studyGroups = groups),
+      error: (err) => console.error('Error loading groups:', err)
+    });
+
   }
 
   onSave() {
@@ -59,6 +74,6 @@ export class CreateStudentDialog implements OnInit {
   }
 
   onClose() {
-    this.dialogRef.close(); // închide dialogul fără date
+    this.dialogRef.close()
   }
 }
