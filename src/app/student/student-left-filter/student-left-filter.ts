@@ -5,6 +5,7 @@ import {MatCard} from '@angular/material/card';
 import {FormsModule} from '@angular/forms';
 import {RestService} from '../../service/rest-service';
 import {GroupModel} from '../../model/group.model';
+import {MatButton} from '@angular/material/button';
 
 @Component({
   selector: 'app-student-left-filter',
@@ -12,7 +13,8 @@ import {GroupModel} from '../../model/group.model';
     NgForOf,
     MatCheckbox,
     MatCard,
-    FormsModule
+    FormsModule,
+    MatButton
   ],
   templateUrl: './student-left-filter.html',
   standalone: true,

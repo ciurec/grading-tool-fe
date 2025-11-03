@@ -41,7 +41,7 @@ import {AssignmentLeftFilter} from '../assignment-left-filter/assignment-left-fi
 })
 export class AssignmentTableComponent implements OnInit {
 
-  displayedColumns: string[] = ['index', 'title', 'deadline', 'actions'];
+  displayedColumns: string[] = ['index', 'title', 'deadline','githubRepository','numberOfStudents', 'actions'];
   dataSource: Assignment[] = [];
   readonly dialog = inject(MatDialog);
 
