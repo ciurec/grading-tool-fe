@@ -2,15 +2,15 @@ import { Component } from '@angular/core';
 import {RouterLink, RouterLinkActive, RouterOutlet} from '@angular/router';
 
 @Component({
-  selector: 'app-shell',
+  selector: 'main-component-shell',
   imports: [
     RouterLink,
     RouterOutlet,
     RouterLinkActive
   ],
-  templateUrl: './app-shell.html',
-  styleUrl: './app-shell.css'
+  templateUrl: './main-component-shell.html',
+  styleUrl: './main-component-shell.css'
 })
-export class AppShell {
+export class MainComponentShell {
 
 }
