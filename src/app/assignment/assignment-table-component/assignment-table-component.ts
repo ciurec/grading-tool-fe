@@ -17,6 +17,7 @@ import {CreateAssignmentComponent} from '../create-assignment-component/create-a
 import {Assignment} from '../../model/assignment';
 import {StudentLeftFilter} from '../../student/student-left-filter/student-left-filter';
 import {AssignmentLeftFilter} from '../assignment-left-filter/assignment-left-filter';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-assignment-component',
@@ -41,11 +42,11 @@ import {AssignmentLeftFilter} from '../assignment-left-filter/assignment-left-fi
 })
 export class AssignmentTableComponent implements OnInit {
 
-  displayedColumns: string[] = ['index', 'title', 'deadline','githubRepository','numberOfStudents', 'actions'];
+  displayedColumns: string[] = ['index', 'title', 'deadline', 'githubRepository', 'numberOfStudents', 'actions'];
   dataSource: Assignment[] = [];
   readonly dialog = inject(MatDialog);
 
-  constructor(private restService: RestService) {
+  constructor(private restService: RestService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -63,6 +64,7 @@ export class AssignmentTableComponent implements OnInit {
   }
 
   viewAssignemntDetails(element: Assignment) {
+    this.router.navigate(['/assignments', 1]);
 
   }
 

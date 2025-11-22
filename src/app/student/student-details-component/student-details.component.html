@@ -1,0 +1,76 @@
+<h1> Student details</h1>
+<div class="student-info">
+  <p><strong>Nume:</strong> test</p>
+  <p><strong>Grupă:</strong> test </p>
+  <p><strong>Email:</strong> test </p>
+  <p><strong>Number of assignements:</strong> test </p>
+</div>
+
+<div class="top-actions" style="display: flex; justify-content: flex-start; margin-bottom: 16px;">
+  <button
+    mat-flat-button
+    (click)="editAssignment()">
+    Edit student
+  </button>
+  <button
+    mat-stroked-button
+    color="primary"
+    (click)="goBack()">
+    Back
+  </button>
+</div>
+<h1>Student assignements</h1>
+<div>
+  <table mat-table [dataSource]="STUDENT.assignments" class="custom-table mat-elevation-z8">
+
+    <!-- First Name -->
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef>Title</th>
+      <td mat-cell *matCellDef="let element"> {{ element.title }}</td>
+    </ng-container>
+
+    <!-- Last Name -->
+    <ng-container matColumnDef="githubRepo">
+      <th mat-header-cell *matHeaderCellDef>Repo</th>
+      <td mat-cell *matCellDef="let element"> {{ element.repo }}</td>
+    </ng-container>
+
+    <!-- Score -->
+    <ng-container matColumnDef="averageScore">
+      <th mat-header-cell *matHeaderCellDef>Grade</th>
+      <td mat-cell *matCellDef="let element"> {{ element.grade }}</td>
+    </ng-container>
+
+    <!-- Status -->
+    <ng-container matColumnDef="passed">
+      <th mat-header-cell *matHeaderCellDef>Status</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.status }}
+      </td>
+    </ng-container>
+
+    <!-- Deadline -->
+    <ng-container matColumnDef="deadline">
+      <th mat-header-cell *matHeaderCellDef>Deadline</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.deadline }}
+      </td>
+    </ng-container>
+
+    <!-- Actions -->
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Grade</th>
+      <td mat-cell *matCellDef="let element">
+        <button
+          mat-flat-button
+          color="primary"
+          (click)="gradeStudentForAssignement(element.id)">
+          Grade
+        </button>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+  </table>
+</div>

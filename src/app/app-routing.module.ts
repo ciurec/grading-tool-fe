@@ -4,7 +4,7 @@ import {StudentTableComponent} from './student/student-table-component/student-t
 import {AssignmentTableComponent} from './assignment/assignment-table-component/assignment-table-component';
 import {MainComponentShell} from './app-shell/main-component/main-component-shell';
 import {DetailsComponentShell} from './app-shell/details-component/details-component-shell';
-import {StudentDetailsComponent} from './student/student-details-component/student-details-component';
+import {AssignementDetailsComponent} from './assignment/assignment-details-component/assignement-details.component';
 
 const routes: Routes = [
   {
@@ -21,7 +21,7 @@ const routes: Routes = [
     path: '',
     component: DetailsComponentShell,
     children: [
-      { path: 'studentDetails', component: StudentDetailsComponent },
+      { path: 'studentDetails', component: AssignementDetailsComponent },
     ],
   },
 ];

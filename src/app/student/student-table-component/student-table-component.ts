@@ -5,13 +5,13 @@ import {MatButton, MatIconButton} from '@angular/material/button';
 import {MatDialog} from '@angular/material/dialog';
 import {CreateStudentDialog} from '../create-student-component/create-student-dialog';
 import {RestService} from '../../service/rest-service';
-import {HttpClient} from '@angular/common/http';
 import {StudentLeftFilter} from '../student-left-filter/student-left-filter';
 import {MatIcon} from '@angular/material/icon';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-student-component',
-  imports: [MatTableModule, MatButton, StudentLeftFilter, MatIcon, MatIconButton],
+  imports: [MatTableModule, MatButton, StudentLeftFilter],
   templateUrl: './student-table-component.html',
   standalone: true,
   styleUrl: './student-table-component.css'
@@ -22,7 +22,7 @@ export class StudentTableComponent implements OnInit {
   dataSource: Student[] = [];
   readonly dialog = inject(MatDialog);
 
-  constructor(private restService: RestService) {
+  constructor(private restService: RestService,private router:Router) {
   }
 
   ngOnInit(): void {
@@ -48,6 +48,7 @@ export class StudentTableComponent implements OnInit {
   }
 
   viewStudentDetails(element: Student) {
+    this.router.navigate(['/students', 1]);
 
   }
 
