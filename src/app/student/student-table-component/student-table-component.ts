@@ -3,7 +3,7 @@ import {MatTableModule} from '@angular/material/table';
 import {Student} from '../../model/student';
 import {MatButton, MatIconButton} from '@angular/material/button';
 import {MatDialog} from '@angular/material/dialog';
-import {CreateStudentDialog} from '../create-student-component/create-student-dialog';
+import {CreateStudentDialog} from '../dialogs/create-student-dialog/create-student-dialog';
 import {RestService} from '../../service/rest-service';
 import {StudentLeftFilter} from '../student-left-filter/student-left-filter';
 import {MatIcon} from '@angular/material/icon';

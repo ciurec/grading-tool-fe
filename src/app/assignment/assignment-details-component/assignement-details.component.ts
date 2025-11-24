@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {MatCard, MatCardActions, MatCardContent, MatCardTitle} from '@angular/material/card';
 import {NgForOf} from '@angular/common';
 import {Student} from '../../model/student';
@@ -17,6 +17,10 @@ import {
 import {MatCheckbox} from '@angular/material/checkbox';
 import {SelectionModel} from "@angular/cdk/collections";
 import {Router} from '@angular/router';
+import {CreateAssignmentComponent} from '../dialogs/create-assignment-dialog/create-assignment-component';
+import {MatDialog} from '@angular/material/dialog';
+import {PlagiarismResultDialog} from '../dialogs/plagiarism-result-dialog/plagiarism-result-dialog';
+import {EditAssignementDialog} from '../dialogs/edit-assignement-dialog/edit-assignement-dialog';
 
 @Component({
   selector: 'app-assignement-details-component',
@@ -40,6 +44,7 @@ import {Router} from '@angular/router';
 export class AssignementDetailsComponent {
   displayedColumns: string[] = ['select', 'index', 'firstName', 'lastName', 'averageScore', 'passed', 'githubRepository'];
   selection = new SelectionModel<any>(true, []); // true = multi-select
+  readonly dialog = inject(MatDialog);
 
   ASSIGNMENT: Assignment =
     {
@@ -93,12 +98,27 @@ export class AssignementDetailsComponent {
   constructor(private router: Router) {
   }
 
-  viewStudentDetails(element: Student) {
+  editAssignement() {
+    const dialogRef = this.dialog.open(EditAssignementDialog, {
+      width: '80%',
+        height: '70%'
+    });
+
+    dialogRef.afterClosed().subscribe((result: any) => {
+      console.log(`Dialog result: ${result}`);
+    });
 
   }
 
   checkPlagiarismForAssignment() {
+    const dialogRef = this.dialog.open(PlagiarismResultDialog, {
+      width: '80%',
+        height: '70%'
+    });
 
+    dialogRef.afterClosed().subscribe((result: any) => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
 

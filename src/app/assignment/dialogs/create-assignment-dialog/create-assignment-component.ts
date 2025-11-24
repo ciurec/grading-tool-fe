@@ -3,8 +3,8 @@ import {MatButton} from "@angular/material/button";
 import {MatDialogActions, MatDialogContent, MatDialogRef} from "@angular/material/dialog";
 import {MatFormField, MatInput, MatLabel} from "@angular/material/input";
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
-import {RestService} from '../../service/rest-service';
-import {Student} from '../../model/student';
+import {RestService} from '../../../service/rest-service';
+import {Student} from '../../../model/student';
 import {MatIcon} from '@angular/material/icon';
 
 @Component({

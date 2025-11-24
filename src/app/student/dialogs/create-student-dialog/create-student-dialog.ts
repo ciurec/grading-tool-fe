@@ -5,10 +5,10 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
 import {MatDialogRef} from '@angular/material/dialog';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {RestService} from '../../service/rest-service';
-import {Student} from '../../model/student';
+import {RestService} from '../../../service/rest-service';
+import {Student} from '../../../model/student';
 import {MatOption, MatSelect, MatSelectModule} from '@angular/material/select';
-import {GroupModel} from '../../model/group.model';
+import {GroupModel} from '../../../model/group.model';
 
 @Component({
   selector: 'app-create-student-component',

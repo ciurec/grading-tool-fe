@@ -12,8 +12,8 @@ import {
 import {Student} from '../../model/student';
 import {MatDialog} from '@angular/material/dialog';
 import {RestService} from '../../service/rest-service';
-import {CreateStudentDialog} from '../../student/create-student-component/create-student-dialog';
-import {CreateAssignmentComponent} from '../create-assignment-component/create-assignment-component';
+import {CreateStudentDialog} from '../../student/dialogs/create-student-dialog/create-student-dialog';
+import {CreateAssignmentComponent} from '../dialogs/create-assignment-dialog/create-assignment-component';
 import {Assignment} from '../../model/assignment';
 import {StudentLeftFilter} from '../../student/student-left-filter/student-left-filter';
 import {AssignmentLeftFilter} from '../assignment-left-filter/assignment-left-filter';

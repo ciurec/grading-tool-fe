@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {MatCard, MatCardActions, MatCardContent, MatCardTitle} from '@angular/material/card';
 import {Student} from '../../model/student';
 import {MatButton} from '@angular/material/button';
@@ -14,6 +14,10 @@ import {
 import {MatCheckbox} from '@angular/material/checkbox';
 import {Assignment} from '../../model/assignment';
 import {Router} from '@angular/router';
+import {CreateAssignmentComponent} from '../../assignment/dialogs/create-assignment-dialog/create-assignment-component';
+import {MatDialog} from '@angular/material/dialog';
+import {GradeStudentDialog} from '../dialogs/grade-student-dialog/grade-student-dialog';
+import {EditStudentDialog} from '../dialogs/edit-student-dialog/edit-student-dialog';
 
 @Component({
   selector: 'app-student-details-component',
@@ -40,6 +44,7 @@ import {Router} from '@angular/router';
 })
 export class StudentDetailsComponent {
   displayedColumns: string[] = ['title', 'githubRepo', 'averageScore', 'passed', 'deadline', 'actions'];
+  readonly dialog = inject(MatDialog);
 
   STUDENT: Student =
     {
@@ -83,10 +88,26 @@ export class StudentDetailsComponent {
   }
 
   gradeStudentForAssignement(element: Assignment) {
+
+    const dialogRef = this.dialog.open(GradeStudentDialog, {
+      width: '80%',
+      height: '70%'
+    });
+
+    dialogRef.afterClosed().subscribe((result: any) => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
-  editAssignment() {
+  editStudent() {
+    const dialogRef = this.dialog.open(EditStudentDialog, {
+      width: '80%',
+      height: '70%'
+    });
 
+    dialogRef.afterClosed().subscribe((result: any) => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
   goBack() {
