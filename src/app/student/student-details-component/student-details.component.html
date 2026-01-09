@@ -1,8 +1,9 @@
 <h1> Student details</h1>
 <div class="student-info">
-  <p><strong>Nume:</strong> test</p>
-  <p><strong>Grupă:</strong> test </p>
-  <p><strong>Email:</strong> test </p>
+  <p><strong>Nume:</strong> {{student?.firstName}}</p>
+  <p><strong>Grupă:</strong> {{student?.studyGroup?.name}} </p>
+  <p><strong>Email:</strong> {{student?.email}} </p>
+  <p><strong>Github repo:</strong> {{student?.githubgRepository}} </p>
   <p><strong>Number of assignements:</strong> test </p>
 </div>
 
@@ -20,8 +21,8 @@
   </button>
 </div>
 <h1>Student assignements</h1>
-<div>
-  <table mat-table [dataSource]="STUDENT.assignments" class="custom-table mat-elevation-z8">
+<div *ngIf="student">
+  <table mat-table [dataSource]="student.assignments" class="custom-table mat-elevation-z8">
 
     <!-- First Name -->
     <ng-container matColumnDef="title">
@@ -32,13 +33,13 @@
     <!-- Last Name -->
     <ng-container matColumnDef="githubRepo">
       <th mat-header-cell *matHeaderCellDef>Repo</th>
-      <td mat-cell *matCellDef="let element"> {{ element.repo }}</td>
+      <td mat-cell *matCellDef="let element"> {{ element.githubRepo }}</td>
     </ng-container>
 
     <!-- Score -->
     <ng-container matColumnDef="averageScore">
       <th mat-header-cell *matHeaderCellDef>Grade</th>
-      <td mat-cell *matCellDef="let element"> {{ element.grade }}</td>
+      <td mat-cell *matCellDef="let element"> {{ element.score }}</td>
     </ng-container>
 
     <!-- Status -->

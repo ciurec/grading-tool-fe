@@ -9,12 +9,12 @@ import {
   MatHeaderRowDef,
   MatRow, MatRowDef, MatTable
 } from "@angular/material/table";
-import {Student} from '../../model/student';
+import {StudentModel} from '../../model/studentModel';
 import {MatDialog} from '@angular/material/dialog';
 import {RestService} from '../../service/rest-service';
 import {CreateStudentDialog} from '../../student/dialogs/create-student-dialog/create-student-dialog';
 import {CreateAssignmentComponent} from '../dialogs/create-assignment-dialog/create-assignment-component';
-import {Assignment} from '../../model/assignment';
+import {AssignmentModel} from '../../model/assignmentModel';
 import {StudentLeftFilter} from '../../student/student-left-filter/student-left-filter';
 import {AssignmentLeftFilter} from '../assignment-left-filter/assignment-left-filter';
 import {Router} from '@angular/router';
@@ -42,8 +42,8 @@ import {Router} from '@angular/router';
 })
 export class AssignmentTableComponent implements OnInit {
 
-  displayedColumns: string[] = ['index', 'title', 'deadline', 'githubRepository', 'numberOfStudents', 'actions'];
-  dataSource: Assignment[] = [];
+  displayedColumns: string[] = ['assignmentNumber', 'title', 'deadline', 'githubRepository', 'numberOfStudents', 'actions'];
+  dataSource: AssignmentModel[] = [];
   readonly dialog = inject(MatDialog);
 
   constructor(private restService: RestService, private router: Router) {
@@ -63,8 +63,8 @@ export class AssignmentTableComponent implements OnInit {
     });
   }
 
-  viewAssignemntDetails(element: Assignment) {
-    this.router.navigate(['/assignments', 1]);
+  viewAssignemntDetails(element: AssignmentModel) {
+    this.router.navigate(['/assignments', element.id]);
 
   }
 

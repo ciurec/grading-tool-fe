@@ -4,7 +4,7 @@ import {MatDialogActions, MatDialogContent, MatDialogRef} from "@angular/materia
 import {MatFormField, MatInput, MatLabel} from "@angular/material/input";
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {RestService} from '../../../service/rest-service';
-import {Student} from '../../../model/student';
+import {StudentModel} from '../../../model/studentModel';
 import {MatIcon} from '@angular/material/icon';
 
 @Component({
@@ -41,7 +41,7 @@ export class CreateAssignmentComponent implements OnInit {
   }
 
   onSave() {
-    const assignment: Student = this.form.value as Student;
+    const assignment: StudentModel = this.form.value as StudentModel;
 
     this.restService.createAssignement(assignment).subscribe({
       next: () => {

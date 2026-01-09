@@ -6,7 +6,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatDialogRef} from '@angular/material/dialog';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {RestService} from '../../../service/rest-service';
-import {Student} from '../../../model/student';
+import {StudentModel} from '../../../model/studentModel';
 import {MatOption, MatSelect, MatSelectModule} from '@angular/material/select';
 import {GroupModel} from '../../../model/group.model';
 
@@ -61,7 +61,7 @@ export class CreateStudentDialog implements OnInit {
   }
 
   onSave() {
-    const student: Student = this.form.value as Student;
+    const student: StudentModel = this.form.value as StudentModel;
 
     this.restService.createStudent(student).subscribe({
       next: (savedStudent) => {

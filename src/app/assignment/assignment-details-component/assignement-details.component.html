@@ -1,10 +1,10 @@
 <h1> Assignment details</h1>
 
 <div class="student-info">
-  <p><strong>Name:</strong> {{ ASSIGNMENT.status }}</p>
-  <p><strong>Assignment repo:</strong> {{ ASSIGNMENT.status }}</p>
-  <p><strong>Number of students assigned:</strong> {{ ASSIGNMENT.students?.length }}</p>
-  <p><strong>Deadline:</strong> {{ ASSIGNMENT.deadline }}</p>
+  <p><strong>Name:</strong> {{ assignment?.status }}</p>
+  <p><strong>Assignment repo:</strong> {{ assignment?.status }}</p>
+  <p><strong>Number of students assigned:</strong> {{ assignment?.students?.length }}</p>
+  <p><strong>Deadline:</strong> {{ assignment?.deadline }}</p>
 </div>
 <div class="top-actions" style="display: flex; justify-content: flex-start; margin-bottom: 16px;">
   <div class="top-actions"
@@ -30,8 +30,8 @@
 </div>
 <h1>Students</h1>
 
-<div>
-  <table mat-table [dataSource]="ASSIGNMENT.students" class="custom-table mat-elevation-z8">
+<div *ngIf="assignment">
+  <table mat-table [dataSource]="assignment.students" class="custom-table mat-elevation-z8">
     <ng-container matColumnDef="select">
       <th mat-header-cell *matHeaderCellDef>
         <mat-checkbox
@@ -60,13 +60,13 @@
     <!-- First Name -->
     <ng-container matColumnDef="firstName">
       <th mat-header-cell *matHeaderCellDef>First Name</th>
-      <td mat-cell *matCellDef="let element"> {{ element.firstName }}</td>
+      <td mat-cell *matCellDef="let element"> {{ element.studentFirstName }}</td>
     </ng-container>
 
     <!-- Last Name -->
     <ng-container matColumnDef="lastName">
       <th mat-header-cell *matHeaderCellDef>Last Name</th>
-      <td mat-cell *matCellDef="let element"> {{ element.lastName }}</td>
+      <td mat-cell *matCellDef="let element"> {{ element.studentLastName }}</td>
     </ng-container>
 
     <!-- Score -->
@@ -96,9 +96,7 @@
         </a>
       </td>
     </ng-container>
-
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-
   </table>
 </div>

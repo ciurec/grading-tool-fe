@@ -1,10 +1,10 @@
-import {Component, inject} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {MatCard, MatCardActions, MatCardContent, MatCardTitle} from '@angular/material/card';
-import {NgForOf} from '@angular/common';
-import {Student} from '../../model/student';
+import {NgForOf, NgIf} from '@angular/common';
+import {StudentModel} from '../../model/studentModel';
 import {of} from 'rxjs';
 import {MatButton} from '@angular/material/button';
-import {Assignment} from '../../model/assignment';
+import {AssignmentModel} from '../../model/assignmentModel';
 import {
   MatCell,
   MatCellDef,
@@ -16,11 +16,11 @@ import {
 } from '@angular/material/table';
 import {MatCheckbox} from '@angular/material/checkbox';
 import {SelectionModel} from "@angular/cdk/collections";
-import {Router} from '@angular/router';
-import {CreateAssignmentComponent} from '../dialogs/create-assignment-dialog/create-assignment-component';
+import {ActivatedRoute, Router} from '@angular/router';
 import {MatDialog} from '@angular/material/dialog';
 import {PlagiarismResultDialog} from '../dialogs/plagiarism-result-dialog/plagiarism-result-dialog';
 import {EditAssignementDialog} from '../dialogs/edit-assignement-dialog/edit-assignement-dialog';
+import {RestService} from '../../service/rest-service';
 
 @Component({
   selector: 'app-assignement-details-component',
@@ -36,72 +36,35 @@ import {EditAssignementDialog} from '../dialogs/edit-assignement-dialog/edit-ass
     MatRowDef,
     MatTable,
     MatHeaderCellDef,
-    MatCheckbox
+    MatCheckbox,
+    NgIf
   ],
   templateUrl: './assignement-details.component.html',
   styleUrl: './assignement-details.component.css'
 })
-export class AssignementDetailsComponent {
+export class AssignementDetailsComponent implements OnInit {
   displayedColumns: string[] = ['select', 'index', 'firstName', 'lastName', 'averageScore', 'passed', 'githubRepository'];
   selection = new SelectionModel<any>(true, []); // true = multi-select
   readonly dialog = inject(MatDialog);
 
-  ASSIGNMENT: Assignment =
-    {
-      id: 0,
-      title: 'Popescu Ion',
-      status: 'Predat',
-      deadline: 'test',
-      students: [
-        {
-          id: 0,
-          index: 1,
-          firstName: 'Popescu Ion',
-          lastName: 'Popescu Ion',
-          studyGroup: {
-            id: 1,
-            name: 'Grupa 1',
-          },
-          email: 'ion.popescu@email.com',
-          assignments: [],
-        },
-        {
-          id: 0,
-          index: 1,
-          firstName: 'Popescu Ion',
-          lastName: 'Popescu Ion',
-          studyGroup: {
-            id: 1,
-            name: 'Grupa 1',
-          },
-          email: 'ion.popescu@email.com',
-          assignments: [],
-        },
-        {
-          id: 0,
-          index: 1,
-          firstName: 'Popescu Ion',
-          lastName: 'Popescu Ion',
-          studyGroup: {
-            id: 1,
-            name: 'Grupa 1',
-          },
-          email: 'ion.popescu@email.com',
-          assignments: [],
-        }
-      ]
-    }
-  ;
+  assignment?: AssignmentModel;
+
   protected readonly of = of;
 
+  constructor(private router: Router, private route: ActivatedRoute, private service: RestService,) {
+  }
 
-  constructor(private router: Router) {
+  ngOnInit() {
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+    this.service.getAssignmentById(id).subscribe(assignement => {
+      this.assignment = assignement;
+    });
   }
 
   editAssignement() {
     const dialogRef = this.dialog.open(EditAssignementDialog, {
       width: '80%',
-        height: '70%'
+      height: '70%'
     });
 
     dialogRef.afterClosed().subscribe((result: any) => {
@@ -113,7 +76,7 @@ export class AssignementDetailsComponent {
   checkPlagiarismForAssignment() {
     const dialogRef = this.dialog.open(PlagiarismResultDialog, {
       width: '80%',
-        height: '70%'
+      height: '70%'
     });
 
     dialogRef.afterClosed().subscribe((result: any) => {
@@ -127,15 +90,17 @@ export class AssignementDetailsComponent {
   }
 
   toggleAllRows() {
-    if (this.isAllSelected()) {
-      this.selection.clear();
-      return;
+    if (this.assignment) {
+      if (this.isAllSelected()) {
+        this.selection.clear();
+        return;
+      }
+      this.selection.select(...this.assignment.students);
     }
-    this.selection.select(...this.ASSIGNMENT.students);
   }
 
   isAllSelected() {
-    return this.selection.selected.length === this.ASSIGNMENT.students.length;
+    return this.selection.selected.length === this.assignment?.students.length;
   }
 
   isIndeterminate() {

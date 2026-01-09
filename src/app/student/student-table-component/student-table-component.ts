@@ -1,6 +1,6 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {MatTableModule} from '@angular/material/table';
-import {Student} from '../../model/student';
+import {StudentModel} from '../../model/studentModel';
 import {MatButton, MatIconButton} from '@angular/material/button';
 import {MatDialog} from '@angular/material/dialog';
 import {CreateStudentDialog} from '../dialogs/create-student-dialog/create-student-dialog';
@@ -18,8 +18,8 @@ import {Router} from '@angular/router';
 })
 export class StudentTableComponent implements OnInit {
 
-  displayedColumns: string[] = ['index', 'firstName', 'lastName','studyGroup','averageScore', 'githubRepository', 'actions'];
-  dataSource: Student[] = [];
+  displayedColumns: string[] = ['studentNumber', 'firstName', 'lastName','studyGroup','averageScore', 'githubRepository', 'actions'];
+  dataSource: StudentModel[] = [];
   readonly dialog = inject(MatDialog);
 
   constructor(private restService: RestService,private router:Router) {
@@ -28,7 +28,6 @@ export class StudentTableComponent implements OnInit {
   ngOnInit(): void {
     this.loadStudents();
   }
-
 
   private loadStudents() {
     this.restService.getStudents().subscribe(students => {
@@ -47,8 +46,8 @@ export class StudentTableComponent implements OnInit {
     });
   }
 
-  viewStudentDetails(element: Student) {
-    this.router.navigate(['/students', 1]);
+  viewStudentDetails(element: StudentModel) {
+    this.router.navigate(['/students', element.id]);
 
   }
 
