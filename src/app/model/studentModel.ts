@@ -1,5 +1,6 @@
 import {AssignmentModel} from './assignmentModel';
 import {GroupModel} from './group.model';
+import {StudentAssignmentModel} from './studentAssignmentModel';
 
 export interface StudentModel {
   id: number;
@@ -11,5 +12,5 @@ export interface StudentModel {
   githubgRepository?: string;
   studyGroup?: GroupModel;
   email?: string;
-  assignments: AssignmentModel[];
+  assignments: StudentAssignmentModel[];
 }

@@ -1,4 +1,4 @@
-import {StudentModel} from './studentModel';
+import {StudentAssignmentModel} from './studentAssignmentModel';
 
 export interface AssignmentModel {
   id: number;
@@ -7,9 +7,8 @@ export interface AssignmentModel {
   githubRepo: string;
   status: 'Predat' | 'Nepredat';
   grade?: number;
-  score?: number;
   copied?: boolean;
   repo?: string;
   deadline: string;
-  students: StudentModel[];
+  students: StudentAssignmentModel[];
 }
