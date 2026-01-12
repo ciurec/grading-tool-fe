@@ -79,6 +79,7 @@ export class StudentDetailsComponent implements OnInit {
 
   editStudent() {
     const dialogRef = this.dialog.open(EditStudentDialog, {
+      data: this.student ,
       width: '80%',
       height: '70%'
     });

@@ -14,6 +14,11 @@
     Edit student
   </button>
   <button
+    mat-flat-button
+    (click)="editStudent()">
+    Add assignment
+  </button>
+  <button
     mat-stroked-button
     color="primary"
     (click)="goBack()">
@@ -67,6 +72,11 @@
           color="primary"
           (click)="gradeStudentForAssignement(element.id)">
           Grade
+        </button>
+        <button class="custom-warn"
+          mat-flat-button
+          (click)="gradeStudentForAssignement(element.id)">
+          Delete assignement
         </button>
       </td>
     </ng-container>

@@ -18,6 +18,7 @@ $my-theme: mat.define-theme((
   /* Culori pentru fundal */
   --color-background: #f8f9fa;
   --color-surface: #ffffff;
+  --color-warn: #ffffff;
   /* Culori pentru text */
   --color-text: #212529;
 
@@ -31,6 +32,11 @@ $my-theme: mat.define-theme((
 /* Raised button (plin) */
 .mat-mdc-raised-button.custom-primary {
   background-color: var(--color-primary) !important;
+  color: var(--color-text-light) !important;
+}
+
+.mat-mdc-unelevated-button.custom-warn {
+  background-color: var(--color-danger) !important;
   color: var(--color-text-light) !important;
 }
 
