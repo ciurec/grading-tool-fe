@@ -20,6 +20,7 @@ import {GradeStudentDialog} from '../dialogs/grade-student-dialog/grade-student-
 import {EditStudentDialog} from '../dialogs/edit-student-dialog/edit-student-dialog';
 import {RestService} from '../../service/rest-service';
 import {NgIf} from '@angular/common';
+import {AddAssignmentComponent} from '../dialogs/add-assignment-dialog/add-assignment-dialog';
 
 @Component({
   selector: 'app-student-details-component',
@@ -79,6 +80,18 @@ export class StudentDetailsComponent implements OnInit {
 
   editStudent() {
     const dialogRef = this.dialog.open(EditStudentDialog, {
+      data: this.student ,
+      width: '80%',
+      height: '70%'
+    });
+
+    dialogRef.afterClosed().subscribe((result: any) => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
+  addAssignment() {
+    const dialogRef = this.dialog.open(AddAssignmentComponent, {
       data: this.student ,
       width: '80%',
       height: '70%'

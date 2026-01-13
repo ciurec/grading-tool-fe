@@ -43,7 +43,6 @@ export class EditStudentDialog implements OnInit {
   }
 
   ngOnInit() {
-
     this.loadStudyGroups();
   }
 
@@ -58,7 +57,7 @@ export class EditStudentDialog implements OnInit {
   onSave() {
     const student: StudentModel = this.form.value as StudentModel;
 
-    this.restService.createStudent(student).subscribe({
+    this.restService.updateStudent(student).subscribe({
       next: (savedStudent) => {
         this.dialogRef.close(savedStudent);
       },

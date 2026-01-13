@@ -1,0 +1,21 @@
+.dlg-content {
+  padding: 16px !important;
+  overflow: visible !important;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.selected-box {
+  margin-top: 8px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.chip-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}

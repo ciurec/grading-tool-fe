@@ -1,0 +1,38 @@
+<h2 mat-dialog-title>Add assignment</h2>
+
+<mat-dialog-content class="dlg-content" [formGroup]="form">
+
+  <mat-form-field appearance="outline" class="w-100">
+    <mat-label>Search assignment</mat-label>
+    <input matInput formControlName="search" [matAutocomplete]="auto" />
+  </mat-form-field>
+
+  <mat-autocomplete
+    #auto="matAutocomplete"
+    [displayWith]="displayAssignment"
+    (optionSelected)="add($event.option.value)"
+  >
+    <mat-option *ngFor="let a of assignments" [value]="a">
+      {{ a.title }}
+    </mat-option>
+  </mat-autocomplete>
+
+  <div class="selected-box">
+    <div class="selected-title">
+      Selected ({{ form.value.id?.length ?? 0 }})
+    </div>
+
+    <mat-chip-set class="chip-wrap">
+      <mat-chip *ngFor="let a of selectedAssignments" (removed)="remove(a.id)">
+        {{ a.title }}
+        <button matChipRemove>✕</button>
+      </mat-chip>
+    </mat-chip-set>
+  </div>
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-flat-button color="primary">Save</button>
+</mat-dialog-actions>

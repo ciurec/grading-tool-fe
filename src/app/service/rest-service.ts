@@ -41,8 +41,8 @@ export class RestService {
     return this.http.post<StudentModel>(this.baseUrl + this.studentsEndpoint, student);
   }
 
-  updateStudent(id: number, student: StudentModel): Observable<StudentModel> {
-    return this.http.put<StudentModel>(`${this.baseUrl + this.studentsEndpoint}/${id}`, student);
+  updateStudent(student: StudentModel): Observable<StudentModel> {
+    return this.http.put<StudentModel>(this.baseUrl + this.studentsEndpoint, student);
   }
 
   deleteStudent(id: number): Observable<void> {
