@@ -5,6 +5,7 @@ import {StudentModel} from '../model/studentModel';
 import {AssignmentModel} from '../model/assignmentModel';
 import {GroupModel} from '../model/group.model';
 import {environment} from '../../environment';
+import {AddAssignmentModel} from '../model/add-assignment-model';
 
 @Injectable({
   providedIn: 'root',
@@ -14,6 +15,7 @@ export class RestService {
   private studentsEndpoint = 'students';
   private assignementsEndpoint = 'assignments';
   private groupsEndpoint = 'baseData/groups';
+  private addAssignment = "/addAssignments"
 
   constructor(private http: HttpClient) {
   }
@@ -29,6 +31,7 @@ export class RestService {
   getStudentById(id: number): Observable<StudentModel> {
     return this.http.get<StudentModel>(`${this.baseUrl + this.studentsEndpoint}/${id}`);
   }
+
   getAssignmentById(id: number): Observable<AssignmentModel> {
     return this.http.get<AssignmentModel>(`${this.baseUrl + this.assignementsEndpoint}/${id}`);
   }
@@ -39,6 +42,12 @@ export class RestService {
 
   createAssignement(student: StudentModel): Observable<StudentModel> {
     return this.http.post<StudentModel>(this.baseUrl + this.studentsEndpoint, student);
+  }
+
+
+  addAssignementToStudent(assignment: AddAssignmentModel): Observable<void> {
+
+    return this.http.put<void>(this.baseUrl + this.studentsEndpoint + this.addAssignment, assignment);
   }
 
   updateStudent(student: StudentModel): Observable<StudentModel> {

@@ -1,8 +1,8 @@
 <h1> Assignment details</h1>
 
 <div class="student-info">
-  <p><strong>Name:</strong> {{ assignment?.status }}</p>
-  <p><strong>Assignment repo:</strong> {{ assignment?.status }}</p>
+  <p><strong>Name:</strong> {{ assignment?.title }}</p>
+  <p><strong>Assignment repo:</strong> {{ assignment?.githubRepo }}</p>
   <p><strong>Number of students assigned:</strong> {{ assignment?.students?.length }}</p>
   <p><strong>Deadline:</strong> {{ assignment?.deadline }}</p>
 </div>
@@ -76,10 +76,10 @@
     </ng-container>
 
     <!-- Status -->
-    <ng-container matColumnDef="passed">
+    <ng-container matColumnDef="assignmentStatus">
       <th mat-header-cell *matHeaderCellDef>Status</th>
       <td mat-cell *matCellDef="let element">
-        {{ element.passed ? 'Passed' : 'Failed' }}
+        {{ element.assignmentStatus}}
       </td>
     </ng-container>
 

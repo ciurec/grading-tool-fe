@@ -43,7 +43,7 @@ import {RestService} from '../../service/rest-service';
   styleUrl: './assignement-details.component.css'
 })
 export class AssignementDetailsComponent implements OnInit {
-  displayedColumns: string[] = ['select', 'index', 'firstName', 'lastName', 'averageScore', 'passed', 'githubRepository'];
+  displayedColumns: string[] = ['select', 'index', 'firstName', 'lastName', 'averageScore', 'assignmentStatus', 'githubRepository'];
   selection = new SelectionModel<any>(true, []); // true = multi-select
   readonly dialog = inject(MatDialog);
 
@@ -51,7 +51,7 @@ export class AssignementDetailsComponent implements OnInit {
 
   protected readonly of = of;
 
-  constructor(private router: Router, private route: ActivatedRoute, private service: RestService,) {
+  constructor(private router: Router, private route: ActivatedRoute, private service: RestService) {
   }
 
   ngOnInit() {

@@ -4,7 +4,7 @@
 
   <mat-form-field appearance="outline" class="w-100">
     <mat-label>Search assignment</mat-label>
-    <input matInput formControlName="search" [matAutocomplete]="auto" />
+    <input matInput formControlName="search" [matAutocomplete]="auto"/>
   </mat-form-field>
 
   <mat-autocomplete
@@ -34,5 +34,5 @@
 
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-flat-button color="primary">Save</button>
+  <button mat-flat-button color="primary" (click)="onSave()">Save</button>
 </mat-dialog-actions>

@@ -47,7 +47,7 @@ import {AddAssignmentComponent} from '../dialogs/add-assignment-dialog/add-assig
   styleUrl: './student-details.component.css'
 })
 export class StudentDetailsComponent implements OnInit {
-  displayedColumns: string[] = ['title', 'githubRepo', 'averageScore', 'passed', 'deadline', 'actions'];
+  displayedColumns: string[] = ['title', 'githubRepo', 'averageScore', 'deadline','assignmentStatus', 'actions'];
   readonly dialog = inject(MatDialog);
 
   student?: StudentModel = undefined;
@@ -60,6 +60,10 @@ export class StudentDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.reloadData();
+  }
+
+  private reloadData() {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.service.getStudentById(id).subscribe(student => {
       this.student = student;
@@ -98,7 +102,7 @@ export class StudentDetailsComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((result: any) => {
-      console.log(`Dialog result: ${result}`);
+      this.reloadData();
     });
   }
 

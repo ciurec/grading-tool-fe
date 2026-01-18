@@ -5,7 +5,6 @@ export interface AssignmentModel {
   assignmentNumber: number;
   title: string;
   githubRepo: string;
-  status: 'Predat' | 'Nepredat';
   grade?: number;
   copied?: boolean;
   repo?: string;
