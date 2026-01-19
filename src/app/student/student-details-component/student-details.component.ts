@@ -21,18 +21,15 @@ import {EditStudentDialog} from '../dialogs/edit-student-dialog/edit-student-dia
 import {RestService} from '../../service/rest-service';
 import {NgIf} from '@angular/common';
 import {AddAssignmentComponent} from '../dialogs/add-assignment-dialog/add-assignment-dialog';
+import {AddAssignmentModel} from '../../model/add-assignment-model';
+import {StudentAssignmentModel} from '../../model/studentAssignmentModel';
 
 @Component({
   selector: 'app-student-details-component',
   imports: [
-    MatCard,
-    MatCardTitle,
-    MatCardContent,
-    MatCardActions,
     MatButton,
     MatCell,
     MatCellDef,
-    MatCheckbox,
     MatColumnDef,
     MatHeaderCell,
     MatHeaderRow,
@@ -47,7 +44,7 @@ import {AddAssignmentComponent} from '../dialogs/add-assignment-dialog/add-assig
   styleUrl: './student-details.component.css'
 })
 export class StudentDetailsComponent implements OnInit {
-  displayedColumns: string[] = ['title', 'githubRepo', 'averageScore', 'deadline','assignmentStatus', 'actions'];
+  displayedColumns: string[] = ['title', 'githubRepo', 'averageScore', 'deadline', 'assignmentStatus', 'actions'];
   readonly dialog = inject(MatDialog);
 
   student?: StudentModel = undefined;
@@ -82,9 +79,19 @@ export class StudentDetailsComponent implements OnInit {
     });
   }
 
+  unassignStudent(element: StudentAssignmentModel) {
+    const assignement: AddAssignmentModel = {
+      studentId: this.student?.id,
+      assignmentIds: [element.assignmentId],
+    }
+    this.service.unassignStudent(assignement).subscribe(() => {
+      this.reloadData();
+    });
+  }
+
   editStudent() {
     const dialogRef = this.dialog.open(EditStudentDialog, {
-      data: this.student ,
+      data: this.student,
       width: '80%',
       height: '70%'
     });
@@ -96,7 +103,7 @@ export class StudentDetailsComponent implements OnInit {
 
   addAssignment() {
     const dialogRef = this.dialog.open(AddAssignmentComponent, {
-      data: this.student ,
+      data: this.student,
       width: '80%',
       height: '70%'
     });

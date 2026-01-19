@@ -1,5 +1,5 @@
 export interface AddAssignmentModel {
 
-  studentId: number;
+  studentId?: number;
   assignmentIds: number[];
 }

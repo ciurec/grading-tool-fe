@@ -74,18 +74,12 @@ export class AddAssignmentComponent implements OnInit {
     }
   }
 
-  displayAssignment(a
-                    :
-                    any
-  ):
+  displayAssignment(a: any):
     string {
     return a ? a.title : '';
   }
 
-  remove(id
-         :
-         number
-  ) {
+  remove(id: number) {
     this.form.patchValue({
       assignmentIds: this.form.value.assignmentIds!.filter((x: number) => x !== id)
     });
@@ -97,7 +91,6 @@ export class AddAssignmentComponent implements OnInit {
   }
 
   onSave() {
-
 
     const asssignement: AddAssignmentModel = {
       studentId: this.data.id,

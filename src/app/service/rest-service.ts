@@ -16,6 +16,7 @@ export class RestService {
   private assignementsEndpoint = 'assignments';
   private groupsEndpoint = 'baseData/groups';
   private addAssignment = "/addAssignments"
+  private unassign = "/unassign";
 
   constructor(private http: HttpClient) {
   }
@@ -30,6 +31,10 @@ export class RestService {
 
   getStudentById(id: number): Observable<StudentModel> {
     return this.http.get<StudentModel>(`${this.baseUrl + this.studentsEndpoint}/${id}`);
+  }
+
+  unassignStudent(model: AddAssignmentModel): Observable<void> {
+    return this.http.put<void>(this.baseUrl + this.studentsEndpoint + this.unassign, model);
   }
 
   getAssignmentById(id: number): Observable<AssignmentModel> {
