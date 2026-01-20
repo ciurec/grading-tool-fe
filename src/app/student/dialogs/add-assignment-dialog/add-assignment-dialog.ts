@@ -15,6 +15,7 @@ import {
 import {StudentModel} from '../../../model/studentModel';
 import {AddAssignmentModel} from '../../../model/add-assignment-model';
 import {RestService} from '../../../service/rest-service';
+import {AssignmentModel} from '../../../model/assignmentModel';
 
 @Component({
   selector: 'app-add-assignment',
@@ -40,11 +41,7 @@ import {RestService} from '../../../service/rest-service';
 })
 export class AddAssignmentComponent implements OnInit {
 
-  assignments = [
-    {id: 1, title: 'Tema 1'},
-    {id: 2, title: 'Tema 2'}
-  ];
-
+  assignments: AssignmentModel[] = [];
   form!: FormGroup;
 
   constructor(private fb: FormBuilder, @Inject(MAT_DIALOG_DATA)
@@ -59,8 +56,12 @@ export class AddAssignmentComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.restService.getAssignments().subscribe((assignemnts) => {
+      this.assignments = assignemnts;
+    })
+    const initialAssignemnts = this.data.assignments.map((assignment) => assignment.assignmentId)
     this.form.patchValue({
-      assignmentIds: [1, 3]
+      assignmentIds: initialAssignemnts,
     });
   }
 
@@ -96,7 +97,7 @@ export class AddAssignmentComponent implements OnInit {
       studentId: this.data.id,
       assignmentIds: this.selectedAssignments.map((x) => x.id),
     }
-    this.restService.addAssignementToStudent(asssignement).subscribe(()=>
+    this.restService.addAssignementToStudent(asssignement).subscribe(() =>
       this.dialogRef.close()
     );
 

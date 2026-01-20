@@ -1,4 +1,3 @@
-import {AssignmentModel} from './assignmentModel';
 import {GroupModel} from './group.model';
 import {StudentAssignmentModel} from './studentAssignmentModel';
 

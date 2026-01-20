@@ -18,10 +18,6 @@
   </mat-autocomplete>
 
   <div class="selected-box">
-    <div class="selected-title">
-      Selected ({{ form.value.id?.length ?? 0 }})
-    </div>
-
     <mat-chip-set class="chip-wrap">
       <mat-chip *ngFor="let a of selectedAssignments" (removed)="remove(a.id)">
         {{ a.title }}
