@@ -44,7 +44,7 @@ import {StudentAssignmentModel} from '../../model/studentAssignmentModel';
   styleUrl: './student-details.component.css'
 })
 export class StudentDetailsComponent implements OnInit {
-  displayedColumns: string[] = ['title', 'githubRepo', 'averageScore', 'deadline', 'assignmentStatus', 'actions'];
+  displayedColumns: string[] = ['title', 'githubRepo', 'averageScore', 'deadline', 'assignmentStatus','grade', 'actions'];
   readonly dialog = inject(MatDialog);
 
   student?: StudentModel = undefined;

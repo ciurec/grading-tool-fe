@@ -65,9 +65,16 @@
       </td>
     </ng-container>
 
+    <ng-container matColumnDef="grade">
+      <th mat-header-cell *matHeaderCellDef>Grade</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.grade}}
+      </td>
+    </ng-container>
+
     <!-- Actions -->
     <ng-container matColumnDef="actions">
-      <th mat-header-cell *matHeaderCellDef>Grade</th>
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
       <td mat-cell *matCellDef="let element">
         <button
           mat-flat-button

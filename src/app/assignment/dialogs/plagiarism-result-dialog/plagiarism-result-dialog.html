@@ -1,1 +1,85 @@
-<p>plagiarism-result-dialog works!</p>
+<h2 mat-dialog-title>Plagiarism Check</h2>
+
+<mat-dialog-content class="pc-content">
+  <div class="pc-meta">
+    <div>
+      Students selected: <strong>{{studentsCount ?? 0 }}</strong>
+    </div>
+    <div class="pc-sub">
+      This will compare submissions pairwise and compute similarity scores.
+    </div>
+  </div>
+
+  <div class="pc-actions">
+    <button
+      mat-flat-button
+      color="primary"
+      type="button"
+      (click)="onCheckPlagiarism()"
+      [disabled]="(studentsCount ?? 0) < 2 || isRunning"
+    >
+      Start
+    </button>
+
+    <mat-progress-spinner
+      *ngIf="isRunning"
+      mode="indeterminate"
+      diameter="22"
+    ></mat-progress-spinner>
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <div class="pc-table-wrap" *ngIf="results?.length; else noResults">
+    <table mat-table [dataSource]="results" class="mat-elevation-z0 pc-table">
+
+      <!-- Student A -->
+      <ng-container matColumnDef="studentA">
+        <th mat-header-cell *matHeaderCellDef>Student A</th>
+        <td mat-cell *matCellDef="let r">{{ r.studentA }}</td>
+      </ng-container>
+
+      <!-- Student B -->
+      <ng-container matColumnDef="studentB">
+        <th mat-header-cell *matHeaderCellDef>Student B</th>
+        <td mat-cell *matCellDef="let r">{{ r.studentB }}</td>
+      </ng-container>
+
+      <!-- Copied From -->
+      <ng-container matColumnDef="copiedFrom">
+        <th mat-header-cell *matHeaderCellDef>Copied from</th>
+        <td mat-cell *matCellDef="let r">
+          {{ r.copiedFrom }}
+        </td>
+      </ng-container>
+
+      <!-- Similarity -->
+      <ng-container matColumnDef="similarity">
+        <th mat-header-cell *matHeaderCellDef>Similarity</th>
+        <td mat-cell *matCellDef="let r">
+          {{ r.similarity }}%
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+
+    <mat-paginator
+      [pageSize]="10"
+      [pageSizeOptions]="[10, 25, 50]"
+      showFirstLastButtons
+    ></mat-paginator>
+  </div>
+
+  <ng-template #noResults>
+    <div class="pc-empty">
+      <span *ngIf="!isRunning">No results yet. Press <strong>Start</strong>.</span>
+      <span *ngIf="isRunning">Running checks… results will appear here.</span>
+    </div>
+  </ng-template>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button type="button" (click)="onClose()">Close</button>
+</mat-dialog-actions>

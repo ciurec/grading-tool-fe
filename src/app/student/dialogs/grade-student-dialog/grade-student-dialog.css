@@ -1,0 +1,50 @@
+.gd-content {
+  display: block;
+  padding-top: 4px;
+}
+
+.gd-meta {
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+.gd-form {
+  display: grid;
+  gap: 12px;
+}
+
+.gd-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+@media (max-width: 600px) {
+  .gd-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.gd-field {
+  width: 100%;
+}
+
+.gd-flag {
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.gd-flag mat-chip-set {
+  margin-left: 8px;
+}
+
+mat-dialog-actions {
+  padding: 8px 16px 16px;
+}
+
+mat-dialog-content {
+  padding: 16px;
+}
