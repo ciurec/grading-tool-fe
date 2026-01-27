@@ -13,5 +13,6 @@ export interface StudentAssignmentModel {
   studentLastName: string;
   passed: boolean;
   grade: number;
+  remarks: string;
   assignmentStatus: AssignmentStatus;
 }

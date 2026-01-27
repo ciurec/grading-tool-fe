@@ -19,10 +19,12 @@ import {MatDialog} from '@angular/material/dialog';
 import {GradeStudentDialog} from '../dialogs/grade-student-dialog/grade-student-dialog';
 import {EditStudentDialog} from '../dialogs/edit-student-dialog/edit-student-dialog';
 import {RestService} from '../../service/rest-service';
-import {NgIf} from '@angular/common';
+import {NgClass, NgIf} from '@angular/common';
 import {AddAssignmentComponent} from '../dialogs/add-assignment-dialog/add-assignment-dialog';
 import {AddAssignmentModel} from '../../model/add-assignment-model';
 import {StudentAssignmentModel} from '../../model/studentAssignmentModel';
+import {AssignmentStatus} from '../../model/assignment-status';
+import {MatChip, MatChipSet} from '@angular/material/chips';
 
 @Component({
   selector: 'app-student-details-component',
@@ -38,13 +40,16 @@ import {StudentAssignmentModel} from '../../model/studentAssignmentModel';
     MatRowDef,
     MatTable,
     MatHeaderCellDef,
-    NgIf
+    NgIf,
+    MatChipSet,
+    MatChip,
+    NgClass
   ],
   templateUrl: './student-details.component.html',
   styleUrl: './student-details.component.css'
 })
 export class StudentDetailsComponent implements OnInit {
-  displayedColumns: string[] = ['title', 'githubRepo', 'averageScore', 'deadline', 'assignmentStatus','grade', 'actions'];
+  displayedColumns: string[] = ['title', 'githubRepo', 'averageScore', 'deadline', 'grade', 'assignmentStatus', 'actions'];
   readonly dialog = inject(MatDialog);
 
   student?: StudentModel = undefined;
@@ -67,15 +72,16 @@ export class StudentDetailsComponent implements OnInit {
     });
   }
 
-  gradeStudentForAssignement(element: AssignmentModel) {
+  gradeStudentForAssignement(studentAssignement: StudentAssignmentModel) {
 
     const dialogRef = this.dialog.open(GradeStudentDialog, {
+      data: studentAssignement,
       width: '80%',
       height: '70%'
     });
 
-    dialogRef.afterClosed().subscribe((result: any) => {
-      console.log(`Dialog result: ${result}`);
+    dialogRef.afterClosed().subscribe(() => {
+      this.reloadData();
     });
   }
 
@@ -115,6 +121,21 @@ export class StudentDetailsComponent implements OnInit {
 
   goBack() {
     this.router.navigate(['/students']);
+  }
+
+  getColor(status: AssignmentStatus | string): 'primary' | 'accent' | 'custom-warn' | undefined {
+    switch (status) {
+      case AssignmentStatus.ASSIGNED:
+        return 'primary';
+      case AssignmentStatus.SUBMITTED:
+        return 'accent';
+      case AssignmentStatus.COMPLETED:
+        return 'primary';
+      case AssignmentStatus.FAILED:
+        return 'custom-warn';
+      default:
+        return undefined;
+    }
   }
 
 }

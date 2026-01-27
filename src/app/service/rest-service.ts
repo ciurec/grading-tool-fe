@@ -6,6 +6,7 @@ import {AssignmentModel} from '../model/assignmentModel';
 import {GroupModel} from '../model/group.model';
 import {environment} from '../../environment';
 import {AddAssignmentModel} from '../model/add-assignment-model';
+import {StudentAssignmentModel} from '../model/studentAssignmentModel';
 
 @Injectable({
   providedIn: 'root',
@@ -17,6 +18,7 @@ export class RestService {
   private groupsEndpoint = 'baseData/groups';
   private addAssignment = "/addAssignments"
   private unassign = "/unassign";
+  private grade = "/grade";
 
   constructor(private http: HttpClient) {
   }
@@ -49,7 +51,6 @@ export class RestService {
     return this.http.post<StudentModel>(this.baseUrl + this.studentsEndpoint, student);
   }
 
-
   addAssignementToStudent(assignment: AddAssignmentModel): Observable<void> {
 
     return this.http.put<void>(this.baseUrl + this.studentsEndpoint + this.addAssignment, assignment);
@@ -57,6 +58,10 @@ export class RestService {
 
   updateStudent(student: StudentModel): Observable<StudentModel> {
     return this.http.put<StudentModel>(this.baseUrl + this.studentsEndpoint, student);
+  }
+
+  gradeStudent(studentAssignmentModel: StudentAssignmentModel): Observable<void> {
+    return this.http.put<void>(this.baseUrl + this.studentsEndpoint + this.grade, studentAssignmentModel);
   }
 
   deleteStudent(id: number): Observable<void> {

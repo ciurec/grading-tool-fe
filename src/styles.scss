@@ -114,3 +114,11 @@ $my-theme: mat.define-theme((
 .color-text {
   color: var(--color-text);
 }
+
+.chip-assigned.mdc-evolution-chip { background-color: #e3f2fd !important;  }
+
+.chip-submitted.mdc-evolution-chip { background-color: #fff8e1;  }
+.chip-completed.mdc-evolution-chip { background-color: #e8f5e9;  }
+.chip-failed.mdc-evolution-chip { background-color: #02f402 !important; }
+.chip-default   .mdc-evolution-chip { background-color: #eceff1; }
+

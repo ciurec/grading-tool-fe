@@ -10,42 +10,42 @@
     <div class="gd-grid">
       <mat-form-field appearance="outline" class="gd-field">
         <mat-label>Grade</mat-label>
-        <input matInput type="number" formControlName="grade" min="0" max="10" step="0.5" />
+        <input matInput type="number" formControlName="studentGrade" min="0" max="10" step="0.5"/>
         <mat-hint>0–10</mat-hint>
-        <mat-error *ngIf="form.controls.grade.hasError('required')">Grade is required</mat-error>
-        <mat-error *ngIf="form.controls.grade.hasError('min')">Min is 0</mat-error>
-        <mat-error *ngIf="form.controls.grade.hasError('max')">Max is 10</mat-error>
+
+        <mat-error *ngIf="form.get('studentGrade')?.hasError('required')">Grade is required</mat-error>
+        <mat-error *ngIf="form.get('studentGrade')?.hasError('min')">Min is 0</mat-error>
+        <mat-error *ngIf="form.get('studentGrade')?.hasError('max')">Max is 10</mat-error>
+
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="gd-field">
         <mat-label>Status</mat-label>
-        <mat-select formControlName="status">
-          <mat-option *ngFor="let s of status" [value]="s.value">
-            {{ s.label }}
+        <mat-select formControlName="assignmentStatus">
+          <mat-option *ngFor="let s of assignmentStatuses" [value]="s">
+            {{ s }}
           </mat-option>
         </mat-select>
-        <mat-error *ngIf="form.controls.status.hasError('required')">Status is required</mat-error>
+        <mat-error *ngIf="form.get('status')?.hasError('required')">
+          Status is required
+        </mat-error>
       </mat-form-field>
     </div>
 
     <mat-card class="gd-flag" appearance="outlined">
       <mat-checkbox formControlName="copied">Mark as copied (plagiarism)</mat-checkbox>
-
-      <mat-chip-set *ngIf="form.value.copied">
-        <mat-chip color="warn" selected>Flagged</mat-chip>
-      </mat-chip-set>
     </mat-card>
 
     <mat-form-field appearance="outline" class="gd-field">
       <mat-label>Notes</mat-label>
-      <textarea matInput rows="4" formControlName="note" placeholder="Optional feedback…"></textarea>
+      <textarea matInput rows="4" formControlName="remarks" placeholder="Optional feedback…"></textarea>
     </mat-form-field>
   </form>
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">
-  <button mat-button >Cancel</button>
-  <button mat-flat-button color="primary" [disabled]="form.invalid">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-flat-button color="primary" [disabled]="form.invalid" (click)="gradeStudent()">
     Save
   </button>
 </mat-dialog-actions>
