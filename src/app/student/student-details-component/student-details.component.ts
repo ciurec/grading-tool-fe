@@ -123,16 +123,16 @@ export class StudentDetailsComponent implements OnInit {
     this.router.navigate(['/students']);
   }
 
-  getColor(status: AssignmentStatus | string): 'primary' | 'accent' | 'custom-warn' | undefined {
+  getColor(status: AssignmentStatus | string): 'chip-assigned' | 'chip-submitted' | 'chip-completed' | 'chip-failed' | undefined {
     switch (status) {
       case AssignmentStatus.ASSIGNED:
-        return 'primary';
+        return 'chip-assigned';
       case AssignmentStatus.SUBMITTED:
-        return 'accent';
+        return 'chip-submitted';
       case AssignmentStatus.COMPLETED:
-        return 'primary';
+        return 'chip-completed';
       case AssignmentStatus.FAILED:
-        return 'custom-warn';
+        return 'chip-failed';
       default:
         return undefined;
     }

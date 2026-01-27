@@ -67,7 +67,7 @@
       <td mat-cell *matCellDef="let element">
         <mat-chip-set>
           <mat-chip
-            class="chip-failed">
+            [ngClass]=getColor(element.assignmentStatus)>
             {{ element.assignmentStatus }}
           </mat-chip>
         </mat-chip-set>

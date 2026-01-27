@@ -11,21 +11,10 @@ $my-theme: mat.define-theme((
 
 @include mat.all-component-themes($my-theme);
 :root {
-  /* Culori principale */
-  --color-primary: #007bff;
-  /* Culori secundare */
-  --color-secondary: #6c757d;
-  /* Culori pentru fundal */
-  --color-background: #f8f9fa;
-  --color-surface: #ffffff;
-  --color-warn: #ffffff;
-  /* Culori pentru text */
-  --color-text: #212529;
-
-
   /* Accent / warnings / success */
-  --color-success: #28a745;
-  --color-danger: #dc3545;
+  --color-primary: #0728ff;
+  --color-success: #02f402;
+  --color-danger: #fd0022;
   --color-warning: #ffc107;
 }
 
@@ -99,13 +88,6 @@ $my-theme: mat.define-theme((
   color: #f44336 !important;
 }
 
-.my-custom-dialog .my-dialog-content {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  background-color: red !important;
-  padding: 0;
-}
 
 .color-primary {
   color: var(--color-primary);
@@ -115,10 +97,23 @@ $my-theme: mat.define-theme((
   color: var(--color-text);
 }
 
-.chip-assigned.mdc-evolution-chip { background-color: #e3f2fd !important;  }
+.chip-assigned.mdc-evolution-chip {
+  background-color: var(--color-warning) !important;;
+}
 
-.chip-submitted.mdc-evolution-chip { background-color: #fff8e1;  }
-.chip-completed.mdc-evolution-chip { background-color: #e8f5e9;  }
-.chip-failed.mdc-evolution-chip { background-color: #02f402 !important; }
-.chip-default   .mdc-evolution-chip { background-color: #eceff1; }
+.chip-submitted.mdc-evolution-chip {
+  background-color: var(--color-success) !important;
+}
+
+.chip-completed.mdc-evolution-chip {
+
+  background-color: var(--color-primary) !important;
+  .mdc-evolution-chip__text-label {
+    color: white !important;
+  }
+}
+
+.chip-failed.mdc-evolution-chip {
+  background-color: var(--color-danger) !important;
+}
 
