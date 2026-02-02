@@ -63,8 +63,9 @@ export class AssignementDetailsComponent implements OnInit {
 
   editAssignement() {
     const dialogRef = this.dialog.open(EditAssignementDialog, {
+      data: this.assignment,
       width: '80%',
-      height: '70%'
+      height: '90%%'
     });
 
     dialogRef.afterClosed().subscribe((result: any) => {
@@ -76,7 +77,7 @@ export class AssignementDetailsComponent implements OnInit {
   checkPlagiarismForAssignment() {
     const dialogRef = this.dialog.open(PlagiarismResultDialog, {
       width: '80%',
-      height: '70%'
+      height: '90%'
     });
 
     dialogRef.afterClosed().subscribe((result: any) => {

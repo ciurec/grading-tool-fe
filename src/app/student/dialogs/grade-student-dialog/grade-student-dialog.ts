@@ -19,7 +19,6 @@ import {MatError, MatFormField, MatInput, MatLabel} from '@angular/material/inpu
 import {StudentAssignmentModel} from '../../../model/studentAssignmentModel';
 import {AssignmentStatus} from '../../../model/assignment-status';
 import {NgForOf, NgIf} from '@angular/common';
-import {StudentModel} from '../../../model/studentModel';
 
 @Component({
   selector: 'app-grade-student-dialog',
@@ -32,8 +31,6 @@ import {StudentModel} from '../../../model/studentModel';
     MatOption,
     MatCheckbox,
     MatCard,
-    MatChipSet,
-    MatChip,
     MatButton,
     MatLabel,
     MatHint,

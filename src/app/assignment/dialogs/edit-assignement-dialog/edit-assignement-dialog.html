@@ -1,1 +1,50 @@
-<p>edit-assignement-dialog works!</p>
+<mat-dialog-content class="dialog-content">
+
+  <h2 class="color-text">Edit assignment</h2>
+
+  <form [formGroup]="form" class="student-form">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Assignment Title</mat-label>
+      <input matInput formControlName="assignementTitle" placeholder="Enter title" name="assignementTitle">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Deadline</mat-label>
+      <input matInput formControlName="deadline" placeholder="Enter last name" name="lastName">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Repository</mat-label>
+      <input matInput formControlName="repository" type="email" placeholder="Enter email" name="repository">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>Search student</mat-label>
+      <input matInput formControlName="search" [matAutocomplete]="auto"/>
+    </mat-form-field>
+
+    <mat-autocomplete
+      #auto="matAutocomplete"
+      [displayWith]="displayStudents"
+      (optionSelected)="add($event.option.value)"
+    >
+      <mat-option *ngFor="let s of students" [value]="s">
+        {{ s.firstName + s.lastName }}
+      </mat-option>
+    </mat-autocomplete>
+
+    <div class="selected-box">
+      <mat-chip-set class="chip-wrap">
+        <mat-chip *ngFor="let s of selectedStudents" (removed)="remove(s.id)">
+          {{ s.firstName }}
+          <button matChipRemove>✕</button>
+        </mat-chip>
+      </mat-chip-set>
+    </div>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-stroked-button class="custom-primary" mat-dialog-close>Cancel</button>
+  <button mat-flat-button class="custom-primary" (click)="onSave()">Save</button>
+</mat-dialog-actions>

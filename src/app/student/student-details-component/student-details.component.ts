@@ -77,7 +77,7 @@ export class StudentDetailsComponent implements OnInit {
     const dialogRef = this.dialog.open(GradeStudentDialog, {
       data: studentAssignement,
       width: '80%',
-      height: '70%'
+      height: '90%'
     });
 
     dialogRef.afterClosed().subscribe(() => {
@@ -99,7 +99,7 @@ export class StudentDetailsComponent implements OnInit {
     const dialogRef = this.dialog.open(EditStudentDialog, {
       data: this.student,
       width: '80%',
-      height: '70%'
+      height: '90%'
     });
 
     dialogRef.afterClosed().subscribe((result: any) => {

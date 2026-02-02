@@ -65,10 +65,7 @@ export class AddAssignmentComponent implements OnInit {
     });
   }
 
-  add(a
-      :
-      any
-  ) {
+  add(a: any) {
     const ids = this.form.value.assignmentIds!;
     if (!ids.includes(a.id)) {
       this.form.patchValue({assignmentIds: [...ids, a.id], search: ''});
