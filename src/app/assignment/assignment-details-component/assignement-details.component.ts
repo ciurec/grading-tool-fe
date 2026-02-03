@@ -55,6 +55,10 @@ export class AssignementDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.reloadPage();
+  }
+
+  private reloadPage() {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.service.getAssignmentById(id).subscribe(assignement => {
       this.assignment = assignement;
@@ -68,8 +72,8 @@ export class AssignementDetailsComponent implements OnInit {
       height: '90%%'
     });
 
-    dialogRef.afterClosed().subscribe((result: any) => {
-      console.log(`Dialog result: ${result}`);
+    dialogRef.afterClosed().subscribe(() => {
+      this.reloadPage();
     });
 
   }

@@ -21,7 +21,7 @@ import {EditStudentDialog} from '../dialogs/edit-student-dialog/edit-student-dia
 import {RestService} from '../../service/rest-service';
 import {NgClass, NgIf} from '@angular/common';
 import {AddAssignmentComponent} from '../dialogs/add-assignment-dialog/add-assignment-dialog';
-import {AddAssignmentModel} from '../../model/add-assignment-model';
+import {AddAssignmentModel} from '../../model/saving/add-assignment-model';
 import {StudentAssignmentModel} from '../../model/studentAssignmentModel';
 import {AssignmentStatus} from '../../model/assignment-status';
 import {MatChip, MatChipSet} from '@angular/material/chips';

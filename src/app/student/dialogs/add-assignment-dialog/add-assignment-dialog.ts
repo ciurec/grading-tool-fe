@@ -13,7 +13,7 @@ import {
   MatDialogRef
 } from '@angular/material/dialog';
 import {StudentModel} from '../../../model/studentModel';
-import {AddAssignmentModel} from '../../../model/add-assignment-model';
+import {AddAssignmentModel} from '../../../model/saving/add-assignment-model';
 import {RestService} from '../../../service/rest-service';
 import {AssignmentModel} from '../../../model/assignmentModel';
 

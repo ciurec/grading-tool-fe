@@ -5,8 +5,9 @@ import {StudentModel} from '../model/studentModel';
 import {AssignmentModel} from '../model/assignmentModel';
 import {GroupModel} from '../model/group.model';
 import {environment} from '../../environment';
-import {AddAssignmentModel} from '../model/add-assignment-model';
+import {AddAssignmentModel} from '../model/saving/add-assignment-model';
 import {StudentAssignmentModel} from '../model/studentAssignmentModel';
+import {EditAssignmentModel} from '../model/saving/edit-assignment-model';
 
 @Injectable({
   providedIn: 'root',
@@ -54,6 +55,11 @@ export class RestService {
   addAssignementToStudent(assignment: AddAssignmentModel): Observable<void> {
 
     return this.http.put<void>(this.baseUrl + this.studentsEndpoint + this.addAssignment, assignment);
+  }
+
+  editAssignement(assignment:EditAssignmentModel): Observable<void> {
+
+    return this.http.put<void>(this.baseUrl + this.assignementsEndpoint,  assignment);
   }
 
   updateStudent(student: StudentModel): Observable<StudentModel> {

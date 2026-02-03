@@ -8,10 +8,34 @@
       <input matInput formControlName="assignementTitle" placeholder="Enter title" name="assignementTitle">
     </mat-form-field>
 
+
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Deadline</mat-label>
-      <input matInput formControlName="deadline" placeholder="Enter last name" name="lastName">
+
+      <input
+        matInput
+        [matDatepicker]="picker"
+        formControlName="deadline"
+        name="deadline"
+        placeholder="Selectează data"
+        aria-label="Selectează deadline-ul"
+      />
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-error *ngIf="form.get('deadline')?.hasError('required')">
+        Data este obligatorie.
+      </mat-error>
+      <mat-error *ngIf="form.get('deadline')?.hasError('matDatepickerMin')">
+        Data aleasă este prea devreme.
+      </mat-error>
+      <mat-error *ngIf="form.get('deadline')?.hasError('matDatepickerMax')">
+        Data aleasă este prea târzie.
+      </mat-error>
+      <mat-error *ngIf="form.get('deadline')?.hasError('matDatepickerParse')">
+        Format de dată invalid.
+      </mat-error>
     </mat-form-field>
+
 
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Repository</mat-label>
