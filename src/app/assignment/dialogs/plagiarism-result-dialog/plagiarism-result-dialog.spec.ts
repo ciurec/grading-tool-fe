@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {PlagiarismResultDialog} from './plagiarism-result-dialog';
 
-import { PlagiarismResultDialog } from './plagiarism-result-dialog';
 
 describe('PlagiarismResultDialog', () => {
   let component: PlagiarismResultDialog;

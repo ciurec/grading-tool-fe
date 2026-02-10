@@ -1,85 +1,110 @@
 <h2 mat-dialog-title>Plagiarism Check</h2>
 
-<mat-dialog-content class="pc-content">
-  <div class="pc-meta">
-    <div>
-      Students selected: <strong>{{studentsCount ?? 0 }}</strong>
-    </div>
-    <div class="pc-sub">
-      This will compare submissions pairwise and compute similarity scores.
-    </div>
+<!-- ... meta / actions / divider ... -->
+
+<div class="pc-students-preview" *ngIf="!results?.length && !isRunning">
+  <h3>Selected students ({{ studentsCount }})</h3>
+  <ul>
+    <li *ngFor="let s of PLAGIARISM_INPUT_MOCK.submissions">
+      {{ s.name }}
+    </li>
+  </ul>
+</div>
+
+<div class="pc-table-wrap" *ngIf="dataSource?.data?.length; else noResults">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z0 pc-table">
+
+    <!-- Student A -->
+    <ng-container matColumnDef="studentA">
+      <th *matHeaderCellDef mat-header-cell>Student A</th>
+      <td mat-cell *matCellDef="let r; let i = index">
+        {{ r.studentA }}
+      </td>
+    </ng-container>
+    <!-- Repo A -->
+    <ng-container matColumnDef="repoA">
+      <th mat-header-cell *matHeaderCellDef>Repo A</th>
+      <td mat-cell *matCellDef="let r">
+        <a *ngIf="r.repoA" [href]="r.repoA" target="_blank">Open repo</a>
+        <span *ngIf="!r.repoA">—</span>
+      </td>
+      </ng-container>
+
+    <!-- Student B -->
+    <ng-container matColumnDef="studentB">
+      <th mat-header-cell *matHeaderCellDef>Student B</th>
+      <td mat-cell *matCellDef="let r">
+        {{ r.studentB }}
+      </td>
+    </ng-container>
+
+    !-- Repo B -->
+    <ng-container matColumnDef="repoB">
+      <th mat-header-cell *matHeaderCellDef>Repo B</th>
+      <td mat-cell *matCellDef="let r">
+        <a *ngIf="r.repoB" [href]="r.repoB" target="_blank">Open repo</a>
+        <span *ngIf="!r.repoB">—</span>
+      </td>
+    </ng-container>
+
+    <!-- Copied From -->
+    <ng-container matColumnDef="copiedFrom">
+      <th mat-header-cell *matHeaderCellDef>Copied from</th>
+      <td mat-cell *matCellDef="let r">
+        {{ r.copiedFrom || '—' }}
+      </td>
+    </ng-container>
+
+    <!-- Similarity -->
+    <ng-container matColumnDef="similarity">
+      <th mat-header-cell *matHeaderCellDef>Similarity</th>
+      <td mat-cell *matCellDef="let r" [ngClass]="getSimilarityClass(r.similarity)">
+        {{ r.similarity }}%
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
+      <td mat-cell *matCellDef="let r">
+        <button
+          mat-flat-button
+          color="primary"
+          type="button"
+          (click)="onMarkCopied(r)"
+          [disabled]="r.markedCopied"
+        >
+          Mark
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  <mat-paginator
+    [pageSize]="10"
+    [pageSizeOptions]="[10, 25, 50]"
+    showFirstLastButtons
+  ></mat-paginator>
+</div>
+
+<ng-template #noResults>
+  <div class="pc-empty">
+    <span *ngIf="!isRunning">No results yet. Press <strong>Start</strong>.</span>
+    <span *ngIf="isRunning">Running checks… results will appear here.</span>
   </div>
-
-  <div class="pc-actions">
-    <button
-      mat-flat-button
-      color="primary"
-      type="button"
-      (click)="onCheckPlagiarism()"
-      [disabled]="(studentsCount ?? 0) < 2 || isRunning"
-    >
-      Start
-    </button>
-
-    <mat-progress-spinner
-      *ngIf="isRunning"
-      mode="indeterminate"
-      diameter="22"
-    ></mat-progress-spinner>
-  </div>
-
-  <mat-divider></mat-divider>
-
-  <div class="pc-table-wrap" *ngIf="results?.length; else noResults">
-    <table mat-table [dataSource]="results" class="mat-elevation-z0 pc-table">
-
-      <!-- Student A -->
-      <ng-container matColumnDef="studentA">
-        <th mat-header-cell *matHeaderCellDef>Student A</th>
-        <td mat-cell *matCellDef="let r">{{ r.studentA }}</td>
-      </ng-container>
-
-      <!-- Student B -->
-      <ng-container matColumnDef="studentB">
-        <th mat-header-cell *matHeaderCellDef>Student B</th>
-        <td mat-cell *matCellDef="let r">{{ r.studentB }}</td>
-      </ng-container>
-
-      <!-- Copied From -->
-      <ng-container matColumnDef="copiedFrom">
-        <th mat-header-cell *matHeaderCellDef>Copied from</th>
-        <td mat-cell *matCellDef="let r">
-          {{ r.copiedFrom }}
-        </td>
-      </ng-container>
-
-      <!-- Similarity -->
-      <ng-container matColumnDef="similarity">
-        <th mat-header-cell *matHeaderCellDef>Similarity</th>
-        <td mat-cell *matCellDef="let r">
-          {{ r.similarity }}%
-        </td>
-      </ng-container>
-
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-    </table>
-
-    <mat-paginator
-      [pageSize]="10"
-      [pageSizeOptions]="[10, 25, 50]"
-      showFirstLastButtons
-    ></mat-paginator>
-  </div>
-
-  <ng-template #noResults>
-    <div class="pc-empty">
-      <span *ngIf="!isRunning">No results yet. Press <strong>Start</strong>.</span>
-      <span *ngIf="isRunning">Running checks… results will appear here.</span>
-    </div>
-  </ng-template>
-</mat-dialog-content>
+</ng-template>
 
 <mat-dialog-actions align="end">
+  <button
+    mat-flat-button
+    color="primary"
+    type="button"
+    (click)="onCheckPlagiarism()"
+    [disabled]="(studentsCount ?? 0) < 2 || isRunning"
+  >
+    Start
+  </button>
   <button mat-button type="button" (click)="onClose()">Close</button>
 </mat-dialog-actions>
